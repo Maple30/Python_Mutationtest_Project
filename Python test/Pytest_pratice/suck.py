@@ -1,4 +1,3 @@
-a = __import__("functiontest")
-
-print(a)
-a.test()
+import subprocess
+result = subprocess.check_output(['ls'])
+print(result.decode())

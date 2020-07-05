@@ -48,12 +48,19 @@ with open('threefive.py', 'r', encoding='UTF-8') as file:
                     mutations.append(origin[:index] + rpsym + origin[(index+1):])
             op_rs_symbols = list(opration_symbols)
 
+AssertPart = "" ##讀入assert code 進行改寫
+with open("test_assert.py",'r',encoding="UTF-8") as file:
+    AssertPart = file.read()
+
 mu_filenames = [] #存放變異體的檔案名稱
 for i,item in enumerate(mutations): #產生變異體檔案出來
     filename = "test_" + str(i) + ".py"
-    mu_filenames.append("test_" + str(i))
+    mu_filenames.append(filename)
     with open(filename, 'w', encoding="UTF-8") as file:
-        file.write(item)
+        file.write(item + "\n" + AssertPart)
+import subprocess
 
 for mus in mu_filenames:
-    output = os.system("pytest test_assert.py")
+    cmd = "pytest " + mus
+    output = subprocess.check_output(['pytest',mus])
+    print(output.decode())
