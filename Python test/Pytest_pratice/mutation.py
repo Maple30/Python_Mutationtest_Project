@@ -1,18 +1,8 @@
 import os
+from functions import *
 
-def get_index(string=None, item=''):
-    flag = 0
-    all_index = []
-
-    for value in string:
-        if string.find(item,flag) != -1:
-           all_index.append(string.find(item,flag))            
-           flag =  string.find(item,flag) + 1
-        else:break
-    return all_index
-    
 boolean_symbols = {">","<",">=","<=","==","!="} #布林運算符號
-print(boolean_symbols,"\n\n\n\n\n\n")
+# print(boolean_symbols,"\n\n\n\n\n\n")
 opration_symbols = {"+","-","*","/"} #運算符號
 bl_rs_symbols = list(boolean_symbols)
 op_rs_symbols = list(opration_symbols)
@@ -54,13 +44,26 @@ with open("test_assert.py",'r',encoding="UTF-8") as file:
 
 mu_filenames = [] #存放變異體的檔案名稱
 for i,item in enumerate(mutations): #產生變異體檔案出來
-    filename = "test_" + str(i) + ".py"
+    filename = "test_" + str(i+1) + ".py"
     mu_filenames.append(filename)
     with open(filename, 'w', encoding="UTF-8") as file:
         file.write(item + "\n" + AssertPart)
-import subprocess
 
-for mus in mu_filenames:
+import subprocess
+output = []
+for mus in mu_filenames: #執行shell
+    # if mus == 'test_1.py':
+    #     continue
     cmd = "pytest " + mus
-    output = subprocess.check_output(['pytest',mus])
-    print(output.decode())
+    #shell set True can run
+    output.append(subprocess.run([cmd], capture_output=True, shell=True).stdout.decode())
+#對output list內的每組字串以\n分割
+beslipt_output = []
+for item in output:
+    beslipt_output.append(item.split('\n'))
+# for i in beslipt_output:
+#     print(i,'\n')
+for i in beslipt_output[0]:
+    print(i,'')
+# print(beslipt_output[1])
+# 計算kill百分比 顯示錯誤字串
