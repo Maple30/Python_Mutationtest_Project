@@ -23,7 +23,7 @@ def relation_symbols_check(origin=""):
 
             if symbol == ">" or symbol == "<": #確定不是>=或<=
                 for (j,confirm) in enumerate(all_willberp_index):
-                    if origin[confirm:confirm+2] == "<=" or origin[confirm:confirm+2] == ">=":
+                    if origin[confirm:confirm+2] == "<=" or origin[confirm:confirm+2] == ">=" or origin[confirm:confirm+2] == ">>" or origin[confirm:confirm+2] == "<<":
                         del(all_willberp_index[j])
             del re_rs_symbols[i] #把不必變異的符號刪除
 
@@ -44,21 +44,21 @@ def relation_symbols_check(origin=""):
 def opration_symbols_check(origin=""):
     opration_symbols = ("+","-","*","/","%") #運算符號
     op_rs_symbols = list(opration_symbols)
-    mutation = []
+    mutations = []
     for i,symbol in enumerate(opration_symbols): #檢查運算符號
         if symbol in origin:
             all_willberp_index = get_index(origin, symbol) #獲取相符的所有索引
             del op_rs_symbols[i] #把不必變異的符號刪除
             for index in all_willberp_index:
                 for rpsym in op_rs_symbols:
-                    mutation.append(origin[:index] + rpsym + origin[(index+1):])
+                    mutations.append(origin[:index] + rpsym + origin[(index+1):])
             op_rs_symbols = list(opration_symbols)
-    return mutation
+    return mutations
 # mutate logic_symbols
 def logic_symbols_check(origin=""):
     logic_symbols = ("and","or") #邏輯符號
     lo_rs_symbols = list(logic_symbols)
-    mutation = []
+    mutations = []
     for i,symbol in enumerate(logic_symbols): #檢查邏輯符號
         if symbol in origin:
             all_willberp_index = get_index(origin, symbol) #獲取相符的所有索引
@@ -66,28 +66,41 @@ def logic_symbols_check(origin=""):
             for index in all_willberp_index:
                 if symbol == "and":
                     for rpsym in lo_rs_symbols:
-                        mutation.append(origin[:index] + rpsym + origin[(index+3):])
+                        mutations.append(origin[:index] + rpsym + origin[(index+3):])
                 elif symbol == "or":
                     for rpsym in lo_rs_symbols:
-                        mutation.append(origin[:index] + rpsym + origin[(index+2):])
+                        mutations.append(origin[:index] + rpsym + origin[(index+2):])
             lo_rs_symbols = list(logic_symbols)
-    return mutation
+    return mutations
 
 # mutate binary_symbols
 def binary_symbols_check(origin=""):
     binary_symbols = ("&","|","^",">>","<<") #邏輯符號
     bi_rs_symbols = list(binary_symbols)
-    mutation = []
+    mutations = []
     for i,symbol in enumerate(binary_symbols): #檢查邏輯符號
         if symbol in origin:
             all_willberp_index = get_index(origin, symbol) #獲取相符的所有索引
             del bi_rs_symbols[i] #把不必變異的符號刪除
             for index in all_willberp_index:
-                if symbol == "and":
+                if len(symbol) == 1: #如果是& | ^
                     for rpsym in bi_rs_symbols:
-                        mutation.append(origin[:index] + rpsym + origin[(index+3):])
-                elif symbol == "or":
+                        mutations.append(origin[:index] + rpsym + origin[(index+1):])
+                else:#如果是 >> <<
                     for rpsym in bi_rs_symbols:
-                        mutation.append(origin[:index] + rpsym + origin[(index+2):])
+                        mutations.append(origin[:index] + rpsym + origin[(index+2):])
             bi_rs_symbols = list(binary_symbols)
-    return mutation
+
+    return mutations
+
+def killpercent(output=list()):
+    total = len(output)
+    killed_counter = 0
+    failed_test_name = []
+    # i[-4].split(" ",1)
+    for i in output:
+        if "failed" not in i[-2]:
+            failed_counter += 1
+            failed_test_name.append(i[-5].split(":",1)[0])
+        else:
+            print("休息拉")

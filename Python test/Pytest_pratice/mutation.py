@@ -8,8 +8,7 @@ with open('threefive.py', 'r', encoding='UTF-8') as file:
     mutations += relation_symbols_check(origin)# relation_symbols
     mutations += opration_symbols_check(origin)#opration_symbols
     mutations += logic_symbols_check(origin)# logic_symbols
-
-    
+    mutations += binary_symbols_check(origin)# binary_symbols
 
 AssertPart = "" ##讀入assert code 進行改寫
 with open("test_assert.py",'r',encoding="UTF-8") as file:
@@ -34,9 +33,11 @@ for mus in mu_filenames: #執行shell
 beslipt_output = []
 for item in output:
     beslipt_output.append(item.split('\n'))
+
 # for i in beslipt_output:
-#     print(i,'\n')
-for i in beslipt_output[0]:
-    print(i,'')
+#     for j in i:
+#         print(j,'')
 # print(beslipt_output[1])
-# 計算kill百分比 顯示錯誤字串
+# 計算kill百分比 顯示沒有kill的字串
+
+temp = killpercent(beslipt_output)
