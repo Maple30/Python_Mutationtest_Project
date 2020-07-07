@@ -9,6 +9,10 @@ def T12():
         return "yes"
     else:
         return "no"
+    if 6>9 and 5>=3:
+        print("impossible")
+    else:
+        print("no")
 
 def T32():
     if 6+1 < 9:
@@ -17,7 +21,7 @@ def T32():
         return "no"
 
 def T69():
-    if 6+1 >= 9:
+    if 6+1 < 9:
         return "yes"
     else:
         return "no"
