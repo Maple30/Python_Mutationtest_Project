@@ -4,8 +4,20 @@ def T35():
     else:
         return "no"
 
+def T12():
+    if 6+1 < 9:
+        return "yes"
+    else:
+        return "no"
+
+def T32():
+    if 6+1 != 9:
+        return "yes"
+    else:
+        return "no"
+
 def T69():
-    if 6+1 > 9:
+    if 6+1 < 9:
         return "yes"
     else:
         return "no"
