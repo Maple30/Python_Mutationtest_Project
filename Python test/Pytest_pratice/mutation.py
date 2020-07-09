@@ -33,11 +33,18 @@ for mus in mu_filenames: #執行shell
 beslipt_output = []
 for item in output:
     beslipt_output.append(item.split('\n'))
+# with open('data.txt','w',encoding='UTF-8') as file:
+#     for one in beslipt_output:
+#         for two in  one:
+#             file.write(two+'\n')
 
 # for i in beslipt_output:
-#     for j in i:
-#         print(j,'')
+#     print(i,'')
+    # for j in i:
+    #     print(j,'')
 # print(beslipt_output[1])
 # 計算kill百分比 顯示沒有kill的字串
 
 temp = killpercent(beslipt_output)
+
+print(temp)

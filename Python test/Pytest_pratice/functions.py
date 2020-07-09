@@ -93,14 +93,26 @@ def binary_symbols_check(origin=""):
 
     return mutations
 
-def killpercent(output=list()):
-    total = len(output)
+def killpercent(beslipt_output=list()):
+    total = len(beslipt_output)
+    print(total)
     killed_counter = 0
-    failed_test_name = []
-    # i[-4].split(" ",1)
-    for i in output:
-        if "failed" not in i[-2]:
-            failed_counter += 1
-            failed_test_name.append(i[-5].split(":",1)[0])
-        else:
-            print("休息拉")
+    kill_success_test_name = []
+    # print(beslipt_output)
+    for one in beslipt_output:
+        if ("passed" in one[-2]): #字串存在"passed"
+            for p,item in enumerate(one):
+                if item == "=========================== short test summary info ============================":
+                    for failedstest in one[p+1:-2]: #killed test
+                        kill_success_test_name.append(failedstest)
+                        print(failedstest)
+                    # print(one[-2],"    ",cou)
+                    # if one[-2] == "None":
+                    #     print(item)
+                    # for i in one:
+                    #     print(i,'')
+        elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
+            killed_counter += 1
+    
+    print(total)
+    return killed_counter/total
