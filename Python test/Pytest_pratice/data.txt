@@ -1,0 +1,937 @@
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_1.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_1.TestClass object at 0x7fec80062490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_1.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_1.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_2.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_2.TestClass object at 0x7f6b83602c70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_2.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_2.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_3.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_3.TestClass object at 0x7f038e7a22b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_3.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_3.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_4.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_4.TestClass object at 0x7f5b7b892460>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_4.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_4.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.07s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_5.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_5.TestClass object at 0x7fb616381460>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_5.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_5.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_6.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_6.TestClass object at 0x7f3d2c2f2460>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_6.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_6.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_7.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_7.TestClass object at 0x7f2c689e12b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_7.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_7.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.11s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_8.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_8.TestClass object at 0x7fda72e222b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_8.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_8.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.09s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_9.py .F                                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_9.TestClass object at 0x7f5be3742490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_9.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_9.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.07s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_10.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_10.TestClass object at 0x7faab3122490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_10.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_10.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.07s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_11.py ..                                                            [100%]
+
+============================== 2 passed in 0.04s ===============================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_12.py ..                                                            [100%]
+
+============================== 2 passed in 0.05s ===============================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_13.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_13.TestClass object at 0x7fecf1492490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_13.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_13.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_14.py ..                                                            [100%]
+
+============================== 2 passed in 0.04s ===============================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_15.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_15.TestClass object at 0x7f76160122b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_15.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_15.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_16.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_16.TestClass object at 0x7f7dbf912490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_16.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_16.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_17.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_17.TestClass object at 0x7f79622f22b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_17.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_17.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_18.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_18.TestClass object at 0x7f8ef2372490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_18.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_18.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.14s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_19.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_19.TestClass object at 0x7f5c0ede12b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_19.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_19.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_20.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_20.TestClass object at 0x7ff270222490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_20.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_20.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.07s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_21.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_21.TestClass object at 0x7f1b8c6622b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_21.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_21.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_22.py FF                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans35 _____________________________
+
+self = <test_22.TestClass object at 0x7f3fbe712dc0>
+
+    def test_ans35(self):
+>       assert T35() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_22.py:25: AssertionError
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_22.TestClass object at 0x7f3fbe712070>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_22.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_22.py::TestClass::test_ans35 - AssertionError: assert 'yes' == 'no'
+FAILED test_22.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+============================== 2 failed in 0.07s ===============================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_23.py FF                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans35 _____________________________
+
+self = <test_23.TestClass object at 0x7f8f30082dc0>
+
+    def test_ans35(self):
+>       assert T35() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_23.py:25: AssertionError
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_23.TestClass object at 0x7f8f30082070>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_23.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_23.py::TestClass::test_ans35 - AssertionError: assert 'yes' == 'no'
+FAILED test_23.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+============================== 2 failed in 0.07s ===============================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_24.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_24.TestClass object at 0x7f467e932c70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_24.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_24.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_25.py FF                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans35 _____________________________
+
+self = <test_25.TestClass object at 0x7f0f5fc72ca0>
+
+    def test_ans35(self):
+>       assert T35() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_25.py:25: AssertionError
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_25.TestClass object at 0x7f0f5fc72040>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_25.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_25.py::TestClass::test_ans35 - AssertionError: assert 'yes' == 'no'
+FAILED test_25.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+============================== 2 failed in 0.10s ===============================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_26.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_26.TestClass object at 0x7f63a3792c70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_26.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_26.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_27.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_27.TestClass object at 0x7f6db62c2490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_27.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_27.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_28.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_28.TestClass object at 0x7f83ea331490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_28.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_28.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.06s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_29.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_29.TestClass object at 0x7fa20f7622b0>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_29.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_29.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_30.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_30.TestClass object at 0x7f76172e2f70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_30.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_30.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_31.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_31.TestClass object at 0x7fbba5cf2490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_31.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_31.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_32.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_32.TestClass object at 0x7f7515042460>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_32.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_32.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.07s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_33.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_33.TestClass object at 0x7f873d512c70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_33.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_33.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.08s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_34.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_34.TestClass object at 0x7f26d9ba2490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_34.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_34.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.13s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_35.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_35.TestClass object at 0x7f9a51403c70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_35.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_35.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.11s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_36.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_36.TestClass object at 0x7fb5ec702f70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_36.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_36.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.10s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_37.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_37.TestClass object at 0x7fc7219e2460>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_37.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_37.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.09s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_38.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_38.TestClass object at 0x7f7e739f1490>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_38.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_38.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.09s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_39.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_39.TestClass object at 0x7f7f44fa2f70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_39.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_39.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.09s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_40.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_40.TestClass object at 0x7fed9a0d2460>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_40.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_40.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.19s ==========================
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.2, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice
+collected 2 items
+
+test_41.py .F                                                            [100%]
+
+=================================== FAILURES ===================================
+_____________________________ TestClass.test_ans69 _____________________________
+
+self = <test_41.TestClass object at 0x7fd20b9e2f70>
+
+    def test_ans69(self):
+>       assert T69() == "no"
+E       AssertionError: assert 'yes' == 'no'
+E         - no
+E         + yes
+
+test_41.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED test_41.py::TestClass::test_ans69 - AssertionError: assert 'yes' == 'no'
+========================= 1 failed, 1 passed in 0.09s ==========================
+
