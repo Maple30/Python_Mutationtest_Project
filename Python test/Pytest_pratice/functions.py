@@ -111,8 +111,11 @@ def killpercent(beslipt_output=list()):
 
                 if "short test summary info" in item:
                     for failedstest in one[p+1:-2]: #killed test
-                        kill_success_test_name.append(failedstest)
-                        print(failedstest)
+                        kill_success_test_name.append(failedstest.split("::",2))
+                        kill_success_test_name[-1][0] = kill_success_test_name[-1][0].split(" ")
+                        print(kill_success_test_name[-1])
+
+                        
         elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
             killed_counter += 1
     
