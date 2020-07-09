@@ -1,3 +1,10 @@
+# 取小數點第n位
+def get_two_float(f_str, n):
+    f_str = str(f_str)      
+    a, b, c = f_str.partition('.')
+    c = (c+"0"*n)[:n]       # 補0
+    return ".".join([a, c])
+
 # find out which symbol need to be replaced
 def get_index(string=None, item=''):
     flag = 0
@@ -95,24 +102,18 @@ def binary_symbols_check(origin=""):
 
 def killpercent(beslipt_output=list()):
     total = len(beslipt_output)
-    print(total)
     killed_counter = 0
     kill_success_test_name = []
     # print(beslipt_output)
     for one in beslipt_output:
-        if ("passed" in one[-2]): #字串存在"passed"
+        if "passed" in one[-2]: #字串存在"passed"
             for p,item in enumerate(one):
-                if item == "=========================== short test summary info ============================":
+                print(item,'')
+                if "short test summary info" in item:
                     for failedstest in one[p+1:-2]: #killed test
                         kill_success_test_name.append(failedstest)
                         print(failedstest)
-                    # print(one[-2],"    ",cou)
-                    # if one[-2] == "None":
-                    #     print(item)
-                    # for i in one:
-                    #     print(i,'')
         elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
             killed_counter += 1
     
-    print(total)
-    return killed_counter/total
+    return get_two_float((killed_counter/total)*100,2)
