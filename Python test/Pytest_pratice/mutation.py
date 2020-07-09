@@ -31,8 +31,7 @@ for mus in mu_filenames: #執行shell
     output.append(subprocess.run([cmd], capture_output=True, shell=True).stdout.decode())
 #對output list內的每組字串以\n分割
 beslipt_output = []
-print(output)
-print(beslipt_output)
+
 for item in output:
     beslipt_output.append(item.split('\n'))
 # with open('data.txt','w',encoding='UTF-8') as file:

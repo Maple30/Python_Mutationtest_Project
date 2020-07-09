@@ -104,11 +104,11 @@ def killpercent(beslipt_output=list()):
     total = len(beslipt_output)
     killed_counter = 0
     kill_success_test_name = []
-    # print(beslipt_output)
+
     for one in beslipt_output:
         if "passed" in one[-2]: #字串存在"passed"
             for p,item in enumerate(one):
-                print(item,'')
+
                 if "short test summary info" in item:
                     for failedstest in one[p+1:-2]: #killed test
                         kill_success_test_name.append(failedstest)
