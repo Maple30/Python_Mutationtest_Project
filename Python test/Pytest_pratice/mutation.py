@@ -9,9 +9,9 @@ def mutationtest(assert_program_filename=""):
         mutations += opration_symbols_check(origin)#opration_symbols
         mutations += logic_symbols_check(origin)# logic_symbols
         mutations += binary_symbols_check(origin)# binary_symbols
-    # print(mutations)
+
     AssertPart = "" ##讀入assert code 進行改寫
-    print(assert_program_filename)
+    
     with open(assert_program_filename,'r',encoding="UTF-8") as file:
         AssertPart = file.read()
 
@@ -45,11 +45,13 @@ def mutationtest(assert_program_filename=""):
     # 計算kill百分比 顯示沒有kill的字串
 
     Killper, suvived = killpercent(beslipt_output)
-    output_string = ''
-    output_string = 'kill_rate = ' + Killper + '%\n' + 'total suvived files:' + str(len(suvived)) + '\n'
+    
+    output_string = []
+    output_string.append('Killpercentage:' + str(Killper))
+    output_string.append('Total suvived programs:'+str(len(suvived)))
     for item in suvived:
-        output_string += item + '\n'
-    print(output_string)
+        output_string.append(item)
+    # print(output_string)
     return output_string
     ## python gui tool
     # import tkinter as tk
