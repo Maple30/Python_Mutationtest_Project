@@ -113,12 +113,12 @@ def killpercent(beslipt_output=list()):
                         kill_success_test_name.append(failedstest.split("::",2))
                         kill_success_test_name[-1][0] = kill_success_test_name[-1][0].split(" ")
                         suvived.append(kill_success_test_name[-1][0][1])
-                        print(kill_success_test_name[-1])
+                        # print(kill_success_test_name[-1])
         elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
             killed_counter += 1
-    print("bslipt_output = ")
-    print(beslipt_output)
-    print("total = " + str(total))
+    # print("bslipt_output = ")
+    # print(beslipt_output)
+    # print("total = " + str(total))
     
     return get_two_float((killed_counter/total)*100,2),suvived
 

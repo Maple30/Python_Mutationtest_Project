@@ -47,7 +47,7 @@ def mutationtest(assert_program_filename=""):
     Killper, suvived = killpercent(beslipt_output)
     
     output_string = []
-    output_string.append('Killpercentage:' + str(Killper))
+    output_string.append('Killpercentage:' + str(Killper) + '%')
     output_string.append('Total suvived programs:'+str(len(suvived)))
     for item in suvived:
         output_string.append(item)
