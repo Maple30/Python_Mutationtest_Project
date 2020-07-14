@@ -41,7 +41,11 @@ window.geometry("300x300")
 
 def open_file():
     filename = filedialog.askopenfilename(title='開啟txt檔案', filetypes=[('txt', '*.py')])
-    entry_filename.delete()
+    # print(entry_filename)
+    try: 
+        entry_filename.delete()
+    except TypeError:
+        print("nothing")
     entry_filename.insert('insert', filename)
 
 
