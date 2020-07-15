@@ -1,14 +1,29 @@
 import os
 from functions import *
-def mutationtest(assert_program_filename=""):
+def mutationtest(assert_program_filename="", mutate_program_filename="",options=[]):
     mutations = [] #存放變異體
-    with open('threefive.py', 'r', encoding='UTF-8') as file:
-        origin = file.read() #讀入要做測試的程式
-        
-        mutations += relation_symbols_check(origin)# relation_symbols
-        mutations += opration_symbols_check(origin)#opration_symbols
-        mutations += logic_symbols_check(origin)# logic_symbols
-        mutations += binary_symbols_check(origin)# binary_symbols
+    with open(mutate_program_filename, 'r', encoding='UTF-8') as file:
+        temp = file.readline() #讀入要做測試的程式
+        origin = ""
+        origin += temp
+        while temp is not None and temp != "":
+            temp = file.readline()
+            for i in temp:
+                if i == " ":
+                    pass
+                elif i == "#":
+                    break
+                else:
+                    origin += temp
+                    break
+        if options[0] == True:
+            mutations += relation_symbols_check(origin)# relation_symbols
+        if options[1] == True:
+            mutations += opration_symbols_check(origin)#opration_symbols
+        if options[2] == True:
+            mutations += logic_symbols_check(origin)# logic_symbols
+        if options[3] == True:
+            mutations += binary_symbols_check(origin)# binary_symbols
 
     AssertPart = "" ##讀入assert code 進行改寫
     
