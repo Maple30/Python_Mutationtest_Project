@@ -62,7 +62,7 @@ def open_mutate_file():
 def print_suvived_file_kill_rate():
     assert_filename = entry_assert_filename.get()  #用get提取entry中的內容
     mutate_filename = entry_mutate_filename.get()
-    print(assert_filename)
+    # print(assert_filename)
     # (relation, opration, logic)
     options = [relation_symbols_chkValue.get(),opration_symbols_chkValue.get(),logic_symbols_chkValue.get(),binary_symbols_chkValue.get()]
     if True not in options:
@@ -87,6 +87,9 @@ entry_assert_filename = tk.Entry(window, width=30, font=("宋體", 10, 'bold'))
 entry_assert_filename.grid(column=0,row=0,columnspan=2)
 entry_mutate_filename = tk.Entry(window, width=30, font=("宋體", 10, 'bold'))
 entry_mutate_filename.grid(column=0,row=1,columnspan=2)
+
+entry_assert_filename.insert('insert', "/mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice/test_assert.py")
+entry_mutate_filename.insert('insert', "/mnt/c/Users/st096/Desktop/Python_Test_Project/Python test/Pytest_pratice/threefive.py")
 # entry_filename = tk.Entry(window, width=30, font=("宋體", 10, 'bold'))
 # entry_filename.grid(column=0,row=0,columnspan=2)
 # 嘗試輸出
@@ -110,11 +113,11 @@ scrollbar.config(command=listbox.yview)
 relation_symbols_chkValue = tk.BooleanVar()
 relation_symbols_chkValue.set(True)
 opration_symbols_chkValue = tk.BooleanVar()
-opration_symbols_chkValue.set(True)
+opration_symbols_chkValue.set(False)
 logic_symbols_chkValue = tk.BooleanVar()
-logic_symbols_chkValue.set(True)
+logic_symbols_chkValue.set(False)
 binary_symbols_chkValue = tk.BooleanVar()
-binary_symbols_chkValue.set(True)
+binary_symbols_chkValue.set(False)
 
 
 relation_symbols_chk = tk.Checkbutton(window, text='relation_symbols', var=relation_symbols_chkValue)

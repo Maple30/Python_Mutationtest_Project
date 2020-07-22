@@ -24,6 +24,10 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
             mutations += logic_symbols_check(origin)# logic_symbols
         if options[3] == True:
             mutations += binary_symbols_check(origin)# binary_symbols
+        try:
+            mutations[0]
+        except IndexError as e:
+            return ['No symbol can be mutate']
 
     AssertPart = "" ##讀入assert code 進行改寫
     
@@ -59,13 +63,18 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     # print(beslipt_output[1])
     # 計算kill百分比 顯示沒有kill的字串
 
-    Killper, suvived = killpercent(beslipt_output)
+    totalprograms, Killper, suvived = killpercent(beslipt_output)
     
     output_string = []
+    output_string.append('Total programs:' + str(totalprograms))
     output_string.append('Killpercentage:' + str(Killper) + '%')
     output_string.append('Total suvived programs:'+str(len(suvived)))
     for item in suvived:
-        output_string.append(item)
+        output_string.append(item[0])
+        output_string.append("suvived functions:")
+        for fucname in item[1:len(item)]:
+            output_string.append(fucname)
+        output_string.append("")
     # print(output_string)
     return output_string
     ## python gui tool
@@ -88,8 +97,6 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     #     a = entry_filename.get()  #用get提取entry中的內容
     #     print(a)
     # tk.Button(window, text="輸出", command=print_file).pack()
-
-
 
     # window.mainloop()
     # # 運行主程式
