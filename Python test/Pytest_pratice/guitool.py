@@ -4,40 +4,6 @@ from tkinter import filedialog
 from tkinter import messagebox as mb
 from mutation import *
 
-# window = tk.Tk()
-# window.geometry("500x300")
-# def open_file():
-#     filename = filedialog.askopenfilename(title='開啟txt檔案', filetypes=[('txt', '*.py')])
-#     entry_filename.insert('insert', filename)
-# def print_suvived_file_kill_rate():
-#     filename = entry_filename.get()  #用get提取entry中的內容
-#     output_string = mutationtest(filename)
-#     # mutation_output.set(output_string)
-#     # for item in (1,20):
-#     #     listbox.insert(tk.END, item)
-#     # listbox.pack(side=tk.LEFT, fill=tk.BOTH)
-#     # scrollbar.config(command=listbox.yview)
-
-# # 設定button按鈕接受功能
-# button_import = tk.Button(window, text="import file", command=open_file).pack()
-# # 設定entry
-# entry_filename = tk.Entry(window, width=30, font=("宋體", 10, 'bold'))
-# entry_filename.pack()
-# # 嘗試輸出
-
-# tk.Button(window, text="output", command=print_suvived_file_kill_rate).pack()
-
-# global scrollbar
-# scrollbar = tk.Scrollbar(window)
-# scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
-# global listbox
-# listbox = tk.Listbox(window, yscrollcommand=scrollbar.set)
-
-
-# window.mainloop()
-# # 運行主程式
-
 window = tk.Tk()
 window.geometry("350x300")
 

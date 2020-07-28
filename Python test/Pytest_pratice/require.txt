@@ -1,0 +1,6 @@
+pytest==5.4.3
+python==3.8.2
+pygame==1.9.6
+
+cd ~ vim .bashrc
+add this : export DISPLAY=:0;
