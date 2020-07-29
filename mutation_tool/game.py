@@ -11,13 +11,12 @@ def show_text(text, x, y):#專門顯示文字的方法，除了顯示文字還�
 # def start_menu():
 
 def game_start(diffculty = 0):
-
     background_image_filename = '73804930_p0.png'
     mouse_image_filename = 'mapel.png'
 
     screen.fill(bg)
     show_text("難度:" + str(diffculty) + "的關卡",100,100)
-    global gameover 
+    global gameover
     gameover = True
     #遊戲主循環
     while gameover:
@@ -25,7 +24,6 @@ def game_start(diffculty = 0):
             if event.type == pygame.QUIT:
                 #觸發事件後退出
                 exit()
-
         pygame.display.update()
 
 def choose_diff():
@@ -75,4 +73,3 @@ while flag:
 
 ch = choose_diff()
 game_start(ch)
-
