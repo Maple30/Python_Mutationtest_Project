@@ -39,3 +39,7 @@ def upload_file(request):
     else:
         form = UploadFileForm()
     return render(request, 'mutation_test/upload.html', {'form': form})
+
+def login(request):
+
+    return render(request, 'register/login.html')
