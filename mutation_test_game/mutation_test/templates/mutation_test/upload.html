@@ -1,10 +1,9 @@
-{% extends "./sample.html" %}
+{% extends "../inherit/sample.html" %}
 {% block upload %}
     <form action="upload_file" method="POST" enctype="multipart/form-data">
         <br>
-        {% bootstrap_form form %}
-        {% comment %} {{form}} {% endcomment %}
-        <input type="submit" value="送出表單">
+        {{ form }}
+        <input class="" type="submit" value="上傳">
         <br>
         {% csrf_token %}
     </form>
