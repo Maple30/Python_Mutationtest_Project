@@ -41,6 +41,8 @@ def upload_file(request):
             if request.POST['page'] in diff:
                 # 嘗試執行程式
                 try:
+                    if request.FILES['file1'].name[-3:-1] + request.FILES['file1'].name[-1] != '.py':
+                        raise IndexError("請上傳副檔名為py的檔案") 
                     fh.handle_uploaded_file(request.FILES['file1'])
                     assert_file = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool/test_assert.py"
                     bemutafile = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/testfile/" + request.FILES['file1'].name
@@ -48,9 +50,13 @@ def upload_file(request):
                     args = {}
                     ans = mutation.mutationtest(assert_file, bemutafile, option)
                     return render(request, page,{'ans':ans})
+                
                 except Exception as e:
+                    # 失敗
+                    print(e)
                     return render(request, page,{'error' : e})
             else:
+                # 參數被改的情況
                 error = '你是不是在搞'
                 messages.error(request, error)
                 return render(request,'mutation_test/index.html')
