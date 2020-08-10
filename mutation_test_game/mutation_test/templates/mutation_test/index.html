@@ -1,5 +1,15 @@
 {% extends "../inherit/sample.html" %}
 
+{% block head %}
+    {% if messages %}
+    <script language="javascript">
+        {% for message in messages %}
+        alert('{{ message }}');
+        {% endfor %}
+    </script>
+    {% endif %}
+{% endblock %}
+
 {% block temp %}
     <div class="container">
         <div class="row text-center" style = "padding-top:80px;padding-bottom:20px">
@@ -70,5 +80,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
