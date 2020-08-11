@@ -1,1 +1,66 @@
 {% extends "../inherit/sample.html" %}
+
+{% block head %}
+<style>
+    .overflow_scroll{   
+        overflow:scroll;
+    }
+
+    .wh30060{
+        width:400px;
+        height:300px;
+    }
+    
+</style>
+{% endblock %}
+
+{% block temp %}
+<div class="container">
+    <h1 class="" style="margin-top:20px;">Level-1</h1>
+    <div class="row">
+        <div class="col-6 border overflow_scroll wh30060">
+<pre>
+# 這是題目
+def T35():
+    if 3 >= 5:
+        return "yes"
+    else:
+        return "no"
+def T69():
+    if 6+1 < 9:
+        return "yes"
+    else:
+        return "no"
+</pre>
+
+        </div>
+        <div class="col-3 align-self-end">
+            <form action="upload_file" method="POST" enctype="multipart/form-data">
+                <br>
+                <input type="file" name="file1" required="" id="id_file1">
+                <input type="hidden" name="page" value="diff_1">
+                {% csrf_token %}
+                <input type="submit" value="送出表單">
+                <br>
+            </form>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <hr>
+        </div>
+    </div>
+    <h1 class="" style="">輸出結果</h1> 
+    <div class="row pt1">
+        <div class="col-6 border overflow_scroll wh30060 ">
+<pre>
+{{ans}}
+{{ error }}
+</pre>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

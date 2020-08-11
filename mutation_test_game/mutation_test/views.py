@@ -28,6 +28,7 @@ def index(request):
     # return HttpResponse(ans)
 # Create your views here.
 
+
 def upload_file(request):
     diff = ['diff_1', 'diff_2', 'diff_3'] #Level分類
     # 是post才進入執行階段
@@ -48,9 +49,17 @@ def upload_file(request):
                     bemutafile = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/testfile/" + request.FILES['file1'].name
                     option = [True, False, False, False]
                     args = {}
-                    ans = mutation.mutationtest(assert_file, bemutafile, option)
+                    ans_arr = mutation.mutationtest(assert_file, bemutafile, option)
+                    ans = '#這是輸出\n'
+                    for i,item in enumerate(ans_arr):
+                        # if item == '':
+                        #     ans_arr += '\n\n'
+                        # else:
+                        ans += item + "\n"
+                    print(ans)
+
                     return render(request, page,{'ans':ans})
-                
+
                 except Exception as e:
                     # 失敗
                     print(e)
