@@ -136,6 +136,6 @@ def killpercent(beslipt_output=list()):
     # print("total = " + str(total))
     print(suvived)
     for i in suvived:
-        for j in i:
-            print(j)
+        with open(i[0], 'r', encoding='UTF-8') as file:
+            i.append(file.read())
     return total, get_two_float((killed_counter/total)*100,2), suvived

@@ -68,14 +68,16 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     output_string = []
     output_string.append('Total programs:' + str(totalprograms))
     output_string.append('Killpercentage:' + str(Killper) + '%')
-    output_string.append('Total suvived programs:'+str(len(suvived)))
+    output_string.append('Total suvived programs:' + str(len(suvived)))
     for item in suvived:
         output_string.append(item[0])
         output_string.append("suvived functions:")
-        for fucname in item[1:len(item)]:
+        for fucname in item[1:-1]:
             output_string.append(fucname)
+        output_string.append(item[-1])
         output_string.append("")
-    # print(output_string)
+    # {'key_1':['']}
+    print(output_string)
     return output_string
     ## python gui tool
     # import tkinter as tk
@@ -86,7 +88,6 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     # def open_file():
     #     filename = filedialog.askopenfilename(title='開啟txt檔案', filetypes=[('txt', '*.py')])
     #     entry_filename.insert('insert', filename)
-        
     # # 設定button按鈕接受功能
     # button_import = tk.Button(window, text="匯入檔案", command=open_file).pack()
     # # 設定entry
@@ -97,6 +98,5 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     #     a = entry_filename.get()  #用get提取entry中的內容
     #     print(a)
     # tk.Button(window, text="輸出", command=print_file).pack()
-
     # window.mainloop()
     # # 運行主程式
