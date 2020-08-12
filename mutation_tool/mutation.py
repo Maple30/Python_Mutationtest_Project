@@ -33,7 +33,12 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     
     with open(assert_program_filename,'r',encoding="UTF-8") as file:
         AssertPart = file.read()
-
+        assert_all_fun = []
+        temp = AssertPart.split('\n')
+        for i in temp:
+            if "def test_" in i:
+                assert_all_fun.append(i.split(" ")[1][0:-1])
+    print(assert_all_fun)
     mu_filenames = [] #存放變異體的檔案名稱
     for i,item in enumerate(mutations): #產生變異體檔案出來
         filename = "test_" + str(i+1) + ".py"
@@ -52,10 +57,9 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
 
     for item in output:
         beslipt_output.append(item.split('\n'))
-    for i in beslipt_output:
-        for j in i:
-            print(j)    
-    output_string = killpercent(beslipt_output)
-    # print('i am mutation','')
-    # print(output_string)
+    # for i in beslipt_output:
+    #     for j in i:
+    #         print(j)    
+    output_string = killpercent(beslipt_output, assert_all_fun)
+
     return output_string

@@ -118,21 +118,24 @@ def output_str_hadler(totalprograms, Killper, suvived):
     return output_string
 
 # 計算kill比率並回傳輸出結果
-def killpercent(beslipt_output=list()):
+def killpercent(beslipt_output=list(), assert_all_fun = []):
     total = len(beslipt_output)
     killed_counter = 0
     kill_success_test_name = []
     suvived = []
+        # with open(i[0], 'r', encoding='UTF-8') as file:
     # print(beslipt_output)
     for one in beslipt_output:
-        if "passed" in one[-2]: #字串存在"passed"
+        if "passed" in one[-2] and "failed" in one[-2]: #字串存在"passed"和"failed"
             for p,item in enumerate(one):
                 if "short test summary info" in item:
                     killedfunc = []
                     suvived.append([one[p+1].split("::")[0].split(" ")[1]])
+                    # 是Testclass的情況
                     if "Testclass" in one[p+1]:
                         for killedstest in one[p+1:-2]:
                             killedfunc.append(killedstest.split("::")[2].split(" ")[0])
+                    # 非Testclass的情況
                     else:
                         for killedstest in one[p+1:-2]:
                             killedfunc.append(killedstest.split("::")[1].split(" ")[0])
@@ -142,6 +145,14 @@ def killpercent(beslipt_output=list()):
                             suvived[-1].append(IsTestFucName.split(" ")[-1][0:-1])
         elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
             killed_counter += 1
+        else: # ("failed" not in one[-2]) and ("passed" in one[-2]) 只有passed存在
+            for p,item in enumerate(one):
+                if "[100%]" in item:
+                    suvived.append([item.split()[0]])
+                    suvived[-1].append(assert_all_fun[0])
+                    suvived[-1].append(assert_all_fun[1])
+
+                    
     # print("bslipt_output = ")
     # print(beslipt_output)
     # print("total = " + str(total))
