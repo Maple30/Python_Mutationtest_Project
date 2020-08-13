@@ -99,21 +99,46 @@ def binary_symbols_check(origin=""):
             bi_rs_symbols = list(binary_symbols)
 
     return mutations
+# 輸出字串處理
+def output_str_hadler(totalprograms, Killper, suvived):
+    # totalprograms:所有變異子程式的檔案名稱
+    # 擊殺率
+    # 存活之變異子程式名稱
+    output_string = []
+    output_string.append('Total programs:' + str(totalprograms))
+    output_string.append('Killpercentage:' + str(Killper) + '%')
+    output_string.append('Total suvived programs:' + str(len(suvived)))
+    
+    for item in suvived:
+        output_string.append(item[0])
+        output_string.append("suvived functions:")
+        for fucname in item[1:-1]:
+            output_string.append(fucname)
+        output_string.append(item[-1])
+        output_string.append("")
+    # print('i am output_str_hadler','')
+    # print(output_string)
+    return output_string
 
-def killpercent(beslipt_output=list()):
+# 計算kill比率並回傳輸出結果
+def killpercent(beslipt_output=list(), assert_all_fun = []):
     total = len(beslipt_output)
     killed_counter = 0
     kill_success_test_name = []
     suvived = []
+    # with open(i[0], 'r', encoding='UTF-8') as file:
+    # print(beslipt_output)
     for one in beslipt_output:
-        if "passed" in one[-2]: #字串存在"passed"
+        if "passed" in one[-2] and "failed" in one[-2]: #字串存在"passed"和"failed"
             for p,item in enumerate(one):
                 if "short test summary info" in item:
                     killedfunc = []
                     suvived.append([one[p+1].split("::")[0].split(" ")[1]])
+                    # 是Testclass的情況
                     if "Testclass" in one[p+1]:
                         for killedstest in one[p+1:-2]:
                             killedfunc.append(killedstest.split("::")[2].split(" ")[0])
+                    # 非Testclass的情況
                     else:
                         for killedstest in one[p+1:-2]:
                             killedfunc.append(killedstest.split("::")[1].split(" ")[0])
@@ -121,21 +146,17 @@ def killpercent(beslipt_output=list()):
                     for IsTestFucName in one:
                         if "def" in IsTestFucName and "test" in IsTestFucName:
                             suvived[-1].append(IsTestFucName.split(" ")[-1][0:-1])
-
-                    # for killedstest in one[p+1:-2]: #killed test, short test summary info那行到倒數第二行的輸出
-                    #     kill_success_test_name.append(failedstest.split("::"))
-                    #     if kill_success_test_name[-1][1] == "TestClass":
-                    #             failedfunc
-                    #     kill_success_test_name[-1][0] = kill_success_test_name[-1][0].split(" ")
-                    #     suvived.append(kill_success_test_name[-1][0][1])
-                        # print(kill_success_test_name[-1])
         elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
             killed_counter += 1
-    # print("bslipt_output = ")
-    # print(beslipt_output)
-    # print("total = " + str(total))
+        else: # ("failed" not in one[-2]) and ("passed" in one[-2]) 只有passed存在
+            for p,item in enumerate(one):
+                if "[100%]" in item:
+                    suvived.append([item.split()[0]])
+                    suvived[-1].append(assert_all_fun[0])
+                    suvived[-1].append(assert_all_fun[1])
     print(suvived)
-    for i in suvived:
-        with open(i[0], 'r', encoding='UTF-8') as file:
-            i.append(file.read())
-    return total, get_two_float((killed_counter/total)*100,2), suvived
+    # for i in suvived:
+    #     with open(i[0], 'r', encoding='UTF-8') as file:
+    #         i.append(file.read())
+    # print(killed_counter,total)
+    return output_str_hadler(total, get_two_float((killed_counter/total)*100,2), suvived)

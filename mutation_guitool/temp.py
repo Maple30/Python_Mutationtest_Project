@@ -1,6 +1,6 @@
 import pygame
 import sys
-print("????") 
+
 clock = pygame.time.Clock()
 fps = 1
 bg = [255, 255, 255]

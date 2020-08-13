@@ -12,6 +12,24 @@
     }
     
 </style>
+
+<style>
+    .graph {
+    position: relative; /* IE is dumb */
+    width: 500px;
+    border: 1px solid #B1D632;
+    padding: 2px;
+    }
+    .graph .bar {
+    display: block;
+    position: static;
+    background: #B1D632;
+    text-align: center;
+    color: #333;
+    height: 2em;
+    line-height: 2em;
+    }
+</style>
 {% endblock %}
 
 {% block temp %}
@@ -60,7 +78,31 @@ def T69():
 {{ error }}
 </pre>
         </div>
+        <div class='col-6'>
+            <div class="graph">
+            <strong id="myBar" class="bar" style="width:0%;"></strong>
+            </div>  
+            <p id='myP' class='text-center' value='0%'></p>
+            <button class="w3-btn w3-dark-grey" onclick="move()">Click Me</button> 
+        </div>
     </div>
-
 </div>
+<script>
+function move() {
+  var elem1 = document.getElementById("myBar");
+  var elem2 = document.getElementById("myP");
+  var width = 1;
+  var id = setInterval(frame, 20);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+        width++;
+        elem1.style.width = width + '%';
+        elem2.innerHTML = width + '%';
+    }
+  }
+}
+</script>
+
 {% endblock %}
