@@ -2,7 +2,7 @@ import sys
 import traceback
 sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool")
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from django.contrib import messages
 import mutation
@@ -33,11 +33,13 @@ def index(request):
 def upload_file(request):
     diff = ['diff_1', 'diff_2', 'diff_3'] #Level分類
     # 是post才進入執行階段
+
+    print(request.POST)
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
-        
+        print(request.FILES)
         if form.is_valid():
-            print(request.POST['page'])
+            # print(request.POST['page'])
             page = 'mutation_test/' + request.POST['page'] + '.html'
             # 判斷page參數是否被更改過
             if request.POST['page'] in diff:
@@ -56,7 +58,8 @@ def upload_file(request):
                         ans += item + "\n"
                     # print('here is views','')
                     # print(ans)
-                    return render(request, page,{'ans':ans})
+                    return JsonResponse({'ans':ans})
+                    # return render(request, page,{'ans':ans})
                 except Exception as e:
                     # 失敗
                     print(e)
@@ -88,14 +91,8 @@ def register(request):
 
 #Level-1題目處理
 def diff_1(request):
-    # if request.method == 'POST':
-    form = UploadFileForm(request.POST, request.FILES) 
-    #     if form.is_valid():
-    #         fh.handle_uploaded_file(request.FILES['file1'])
-    #         return render(request,'mutation_test/index.html')
-    # else:
-    #     form = UploadFileForm()
-    return render(request, 'mutation_test/diff_1.html', {'form': form})
+
+    return render(request, 'mutation_test/diff_1.html')
 
 #Level-2題目處理
 def diff_2(request):
@@ -104,3 +101,6 @@ def diff_2(request):
 #Level-3題目處理
 def diff_3(request):
     return render(request, 'mutation_test/diff_3.html')
+
+def ajax(request):
+    return render(request, 'mutation_test/diff_1.html', {'suc' : success})

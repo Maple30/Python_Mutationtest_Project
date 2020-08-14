@@ -38,6 +38,7 @@
     <div class="row">
         <div class="col-6 border overflow_scroll wh30060">
 <pre>
+{{ suc }}
 # 這是題目
 def T35():
     if 3 >= 5:
@@ -53,14 +54,19 @@ def T69():
 
         </div>
         <div class="col-3 align-self-end">
+            <!--
             <form action="upload_file" method="POST" enctype="multipart/form-data">
                 <br>
                 <input type="file" name="file1" required="" id="id_file1">
                 <input type="hidden" name="page" value="diff_1">
-                {% csrf_token %}
                 <input type="submit" value="送出表單">
                 <br>
             </form>
+            -->
+            {% csrf_token %}
+            <input type="file" name="file1" required="" id="Upfile">
+            <input type="hidden" name="page" value="diff_1">
+            <button type='button' onclick="loadXMLDoc()">Test</button>
         </div>
         <div class="col-3">
         </div>
@@ -73,7 +79,7 @@ def T69():
     <h1 class="" style="">輸出結果</h1> 
     <div class="row pt1">
         <div class="col-6 border overflow_scroll wh30060 ">
-<pre>
+<pre id='output'>
 {{ans}}
 {{ error }}
 </pre>
@@ -84,25 +90,82 @@ def T69():
             </div>  
             <p id='myP' class='text-center' value='0%'></p>
             <button class="w3-btn w3-dark-grey" onclick="move()">Click Me</button> 
+            
         </div>
     </div>
 </div>
+
 <script>
-function move() {
-  var elem1 = document.getElementById("myBar");
-  var elem2 = document.getElementById("myP");
-  var width = 1;
-  var id = setInterval(frame, 20);
-  function frame() {
-    if (width >= 100) {
-      clearInterval(id);
-    } else {
-        width++;
-        elem1.style.width = width + '%';
-        elem2.innerHTML = width + '%';
+    function move() {
+    var elem1 = document.getElementById("myBar");
+    var elem2 = document.getElementById("myP");
+    var width = 1;
+    var id = setInterval(frame, 20);
+    function frame() {
+        if (width >= 100) {
+        clearInterval(id);
+        } else {
+            width++;
+            elem1.style.width = width + '%';
+            elem2.innerHTML = width + '%';
+        }
     }
-  }
-}
+    }
 </script>
 
+<script>
+    function loadXMLDoc()
+    {
+        var xmlhttp;
+        if (typeof(document.getElementById("Upfile").files[0]) == 'undefined')
+            {
+                alert("請選擇要上傳的檔案")
+                return;
+            }
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var elem1 = document.getElementById("myBar");
+                var elem2 = document.getElementById("myP");
+                var width = 1;
+                js_ans = JSON.parse(xmlhttp.response)
+                document.getElementById("output").innerHTML = js_ans.ans
+                console.log(typeof(xmlhttp.response))
+                console.log(xmlhttp)
+                console.log(js_ans.ans)
+                var id = setInterval(frame, 20);
+
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                    } else {
+                        width++;
+                        elem1.style.width = width + '%';
+                        elem2.innerHTML = width + '%';
+                    }
+                }
+            }
+        }
+
+        xmlhttp.open("POST","{% url 'upload_file' %}",true);
+        xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
+        
+        var f_obj = document.getElementById("Upfile").files[0];
+        var data = new FormData();
+        data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
+        data.append("file1", f_obj);
+        data.append("page", "diff_1");
+        xmlhttp.send(data);
+        
+    }
+</script>
 {% endblock %}
