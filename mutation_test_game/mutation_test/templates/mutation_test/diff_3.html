@@ -2,6 +2,17 @@
 
 {% block head %}
 <style>
+    .relative1 {
+    position: relative;
+    }
+    .relative2 {
+    position: relative;
+    top: -30px;
+    left: 10px;
+    width: 500px;
+    background-color: rgba(255,255,255,0);
+    }
+
     .overflow_scroll{   
         overflow:scroll;
     }
@@ -12,14 +23,34 @@
     }
     
 </style>
+
+<style>
+    .graph {
+    position: relative; /* IE is dumb */
+    width: 500px;
+    border: 1px solid #B1D632;
+    padding: 2px;
+    }
+    .graph .bar {
+    display: block;
+    position: static;
+    background: #B1D632;
+    text-align: center;
+    color: #333;
+    height: 2em;
+    line-height: 2em;
+    }
+</style>
+
 {% endblock %}
 
 {% block temp %}
 <div class="container">
-    <h1 class="" style="margin-top:20px;">Level-1</h1>
+    <h1 class="" style="margin-top:20px;">Level-3</h1>
     <div class="row">
         <div class="col-6 border overflow_scroll wh30060">
 <pre>
+{{ suc }}
 # 這是題目
 def T35():
     if 3 >= 5:
@@ -35,14 +66,19 @@ def T69():
 
         </div>
         <div class="col-3 align-self-end">
+            <!--
             <form action="upload_file" method="POST" enctype="multipart/form-data">
                 <br>
                 <input type="file" name="file1" required="" id="id_file1">
                 <input type="hidden" name="page" value="diff_1">
-                {% csrf_token %}
                 <input type="submit" value="送出表單">
                 <br>
             </form>
+            -->
+            {% csrf_token %}
+            <input type="file" class='pb1 rounded' name="file1" required="" id="Upfile">
+            <input type="hidden" name="page" value="diff_1">
+            <button type='button' class='border-light    rounded' onclick="loadXMLDoc()">Test</button>
         </div>
         <div class="col-3">
         </div>
@@ -52,15 +88,79 @@ def T69():
             <hr>
         </div>
     </div>
-    <h1 class="" style="">輸出結果</h1> 
+    <h1 class="" style="">輸出結果</h1>
     <div class="row pt1">
         <div class="col-6 border overflow_scroll wh30060 ">
-<pre>
+<pre id='output'>
 {{ans}}
 {{ error }}
 </pre>
         </div>
+        <div class='col-6'>
+            <div class="graph">
+            <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
+            </div>  
+            <p class='text-center relative2'>kill rate</p>
+            <p id='myP' class='text-center relative2' ></p>
+            <p id='myp2' class='text-center relative2' ></p>
+        </div>
     </div>
-
 </div>
+
+<script>
+    function loadXMLDoc()
+    {
+        var xmlhttp;
+        if (typeof(document.getElementById("Upfile").files[0]) == 'undefined')
+            {
+                alert("請選擇要上傳的檔案")
+                return;
+            }
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var elem1 = document.getElementById("myBar");
+                var elem2 = document.getElementById("myP");
+                var width = 1;
+                
+                js_ans = JSON.parse(xmlhttp.response)
+
+                var id = setInterval(frame, 20);
+                var elemp2 = document.getElementById('myp2')
+                elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
+                document.getElementById("output").innerHTML = js_ans.ans
+                function frame() {
+                    if (width >= parseFloat(js_ans.killper)) {
+                        elem1.style.width = parseFloat(js_ans.killper) + '%';
+                        elem2.innerHTML = parseFloat(js_ans.killper) + '%';
+                        clearInterval(id);
+                    } else {
+                        width++;
+                        elem1.style.width = width + '%';
+                        elem2.innerHTML = width + '%';
+                    }
+                }
+            }
+        }
+
+        xmlhttp.open("POST","{% url 'upload_file' %}",true);
+        xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
+        var f_obj = document.getElementById("Upfile").files[0];
+        var data = new FormData();
+
+        data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
+        data.append("file1", f_obj);
+        data.append("page", "diff_1");
+        xmlhttp.send(data);
+    }
+</script>
 {% endblock %}

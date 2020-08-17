@@ -115,7 +115,7 @@ def output_str_hadler(totalprograms, Killper, suvived):
         output_string.append("")
     # print('i am output_str_hadler','')
     # print(output_string)
-    return output_string
+    return output_string, Killper
 
 # 計算kill比率並回傳輸出結果
 def killpercent(beslipt_output=list(), assert_all_fun = []):

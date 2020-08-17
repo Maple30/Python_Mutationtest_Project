@@ -37,7 +37,7 @@ def upload_file(request):
     print(request.POST)
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
-        print(request.FILES)
+        # print(request.FILES)
         if form.is_valid():
             # print(request.POST['page'])
             page = 'mutation_test/' + request.POST['page'] + '.html'
@@ -48,17 +48,17 @@ def upload_file(request):
                     if request.FILES['file1'].name[-3:-1] + request.FILES['file1'].name[-1] != '.py':
                         raise IndexError("請上傳副檔名為py的檔案") 
                     fh.handle_uploaded_file(request.FILES['file1'])
-                    assert_file = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool/test_assert.py"
-                    bemutafile = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/testfile/" + request.FILES['file1'].name
+                    bemutafile = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool/threefive.py"
+                    assert_file = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/testfile/" + request.FILES['file1'].name
                     option = [True, False, False, False]
                     args = {}
-                    ans_arr = mutation.mutationtest(assert_file, bemutafile, option)
+                    ans_arr, killper = mutation.mutationtest(assert_file, bemutafile, option)
                     ans = '#這是輸出\n'
                     for i,item in enumerate(ans_arr):
                         ans += item + "\n"
                     # print('here is views','')
                     # print(ans)
-                    return JsonResponse({'ans':ans})
+                    return JsonResponse({'ans':ans,'killper':killper})
                     # return render(request, page,{'ans':ans})
                 except Exception as e:
                     # 失敗
@@ -78,7 +78,7 @@ def upload_file(request):
                 error = '你是不是在搞'
                 messages.error(request, error)
                 return render(request,'mutation_test/index.html')
-    else:
+    else:# 不是POST的情況
         form = UploadFileForm()
     return render(request, 'mutation_test/upload.html', {'form': form})
 

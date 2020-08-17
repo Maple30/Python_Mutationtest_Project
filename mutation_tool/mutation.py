@@ -60,6 +60,6 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
     # for i in beslipt_output:
     #     for j in i:
     #         print(j)
-    output_string = killpercent(beslipt_output, assert_all_fun)
+    output_string, killper = killpercent(beslipt_output, assert_all_fun)
 
-    return output_string
+    return output_string, killper

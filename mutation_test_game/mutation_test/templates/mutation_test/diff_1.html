@@ -2,6 +2,17 @@
 
 {% block head %}
 <style>
+    .relative1 {
+    position: relative;
+    }
+    .relative2 {
+    position: relative;
+    top: -30px;
+    left: 10px;
+    width: 500px;
+    background-color: rgba(255,255,255,0);
+    }
+
     .overflow_scroll{   
         overflow:scroll;
     }
@@ -30,6 +41,7 @@
     line-height: 2em;
     }
 </style>
+
 {% endblock %}
 
 {% block temp %}
@@ -64,9 +76,9 @@ def T69():
             </form>
             -->
             {% csrf_token %}
-            <input type="file" name="file1" required="" id="Upfile">
+            <input type="file" class='pb1 rounded' name="file1" required="" id="Upfile">
             <input type="hidden" name="page" value="diff_1">
-            <button type='button' onclick="loadXMLDoc()">Test</button>
+            <button type='button' class='border-light    rounded' onclick="loadXMLDoc()">Test</button>
         </div>
         <div class="col-3">
         </div>
@@ -76,7 +88,7 @@ def T69():
             <hr>
         </div>
     </div>
-    <h1 class="" style="">輸出結果</h1> 
+    <h1 class="" style="">輸出結果</h1>
     <div class="row pt1">
         <div class="col-6 border overflow_scroll wh30060 ">
 <pre id='output'>
@@ -86,32 +98,14 @@ def T69():
         </div>
         <div class='col-6'>
             <div class="graph">
-            <strong id="myBar" class="bar" style="width:0%;"></strong>
+            <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
             </div>  
-            <p id='myP' class='text-center' value='0%'></p>
-            <button class="w3-btn w3-dark-grey" onclick="move()">Click Me</button> 
-            
+            <p class='text-center relative2'>kill rate</p>
+            <p id='myP' class='text-center relative2' ></p>
+            <p id='myp2' class='text-center relative2' ></p>
         </div>
     </div>
 </div>
-
-<script>
-    function move() {
-    var elem1 = document.getElementById("myBar");
-    var elem2 = document.getElementById("myP");
-    var width = 1;
-    var id = setInterval(frame, 20);
-    function frame() {
-        if (width >= 100) {
-        clearInterval(id);
-        } else {
-            width++;
-            elem1.style.width = width + '%';
-            elem2.innerHTML = width + '%';
-        }
-    }
-    }
-</script>
 
 <script>
     function loadXMLDoc()
@@ -137,15 +131,18 @@ def T69():
                 var elem1 = document.getElementById("myBar");
                 var elem2 = document.getElementById("myP");
                 var width = 1;
+                
                 js_ans = JSON.parse(xmlhttp.response)
-                document.getElementById("output").innerHTML = js_ans.ans
-                console.log(typeof(xmlhttp.response))
-                console.log(xmlhttp)
-                console.log(js_ans.ans)
+
                 var id = setInterval(frame, 20);
+                var elemp2 = document.getElementById('myp2')
 
                 function frame() {
-                    if (width >= 100) {
+                    if (width >= parseFloat(js_ans.killper)) {
+                        elem1.style.width = parseFloat(js_ans.killper) + '%';
+                        elem2.innerHTML = parseFloat(js_ans.killper) + '%';
+                        elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
+                        document.getElementById("output").innerHTML = js_ans.ans
                         clearInterval(id);
                     } else {
                         width++;
@@ -158,14 +155,13 @@ def T69():
 
         xmlhttp.open("POST","{% url 'upload_file' %}",true);
         xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
-        
         var f_obj = document.getElementById("Upfile").files[0];
         var data = new FormData();
+
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
         data.append("file1", f_obj);
         data.append("page", "diff_1");
         xmlhttp.send(data);
-        
     }
 </script>
 {% endblock %}
