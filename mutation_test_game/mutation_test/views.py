@@ -1,11 +1,14 @@
 import sys
 import traceback
 sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool")
+import mutation
+sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/T35")
+import T35, mutateT35
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from django.contrib import messages
-import mutation
+
 from .forms import UploadFileForm
 # filehandler = __import__("/mutation_test/file_handler")
 import mutation_test.file_handler as fh
@@ -13,28 +16,17 @@ import mutation_test.file_handler as fh
 
 
 def index(request):
-    '''
-    assert_file = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool/test_assert.py"
-    bemutafile = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool/threefive.py"
-    option = [True, False, False, False]
-    template_name = "mutation_test/index.html"   
-    args = {}
-    ans = mutation.mutationtest(assert_file, bemutafile, option)
-    args['mytext'] = ans
-    '''
     # print(fh.handle_uploaded_file())
     # return TemplateResponse(request, template_name, args)
     return render(request,'mutation_test/index.html')
 
     # return HttpResponse(ans)
-# Create your views here.
-
+    # Create your views here.
 
 def upload_file(request):
     diff = ['diff_1', 'diff_2', 'diff_3'] #Level分類
     # 是post才進入執行階段
-
-    print(request.POST)
+    # print(request.POST)
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         # print(request.FILES)
@@ -82,16 +74,19 @@ def upload_file(request):
         form = UploadFileForm()
     return render(request, 'mutation_test/upload.html', {'form': form})
 
-#暫定沒有
-def login(request):
-    return render(request, 'register/login.html')
-
-def register(request):
-    return render(request, 'register/register.html')
-
 #Level-1題目處理
 def diff_1(request):
+    if request.method == 'POST':
+        Num = int(request.POST['Num'])
+        # print(request.POST['Num'])
+        unmutate_ans = ''
+        mutated_ans = ''
+        unmutate_ans = T35.T35(int(request.POST['Num']))
+        mutated_ans = mutateT35.T35(int(request.POST['Num']))
+        print(unmutate_ans, mutated_ans)
+        # T35.T35(int(request.POST['Num']))
 
+        return JsonResponse({'ans1':unmutate_ans,'ans2':mutated_ans})
     return render(request, 'mutation_test/diff_1.html')
 
 #Level-2題目處理
@@ -104,3 +99,25 @@ def diff_3(request):
 
 def ajax(request):
     return render(request, 'mutation_test/diff_1.html', {'suc' : success})
+
+# 小工具下載路徑
+from urllib import parse
+def tool_download(request):
+    Zip = '/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_guitool.zip'
+    z_file = open(Zip, 'rb')
+    data = z_file.read()
+    z_file.close()
+    # os.remove(z_file.name)
+    response = HttpResponse(data, content_type='application/zip')
+    
+    response['Content-Disposition'] = 'attachment;filename=' + parse.quote("guitool.zip ")
+    return response
+
+
+#暫定沒有
+# def login(request):
+#     return render(request, 'register/login.html')
+
+# def register(request):
+#     return render(request, 'register/register.html')
+

@@ -45,20 +45,30 @@
 {% endblock %}
 
 {% block temp %}
+
 <div class="container">
     <h1 class="" style="margin-top:20px;">Level-1</h1>
+    <div class='row'>
+        <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="after()">變異後 </button>
+    </div>
     <div class="row">
         <div class="col-6 border overflow_scroll wh30060">
-<pre>
+<pre id='unmutate' style="">
 {{ suc }}
-# 這是題目
+# 變異前
 def T35():
-    if 3 >= 5:
+    if 3 > NumX:
         return "yes"
     else:
         return "no"
-def T69():
-    if 6+1 < 9:
+</pre>
+
+<pre id='mutated' style="display:none">
+{{ suc }}
+# 變異後
+def T35():
+    if 3 < NumX:
         return "yes"
     else:
         return "no"
@@ -66,36 +76,50 @@ def T69():
 
         </div>
         <div class="col-3 align-self-end">
-            <!--
-            <form action="upload_file" method="POST" enctype="multipart/form-data">
-                <br>
-                <input type="file" name="file1" required="" id="id_file1">
-                <input type="hidden" name="page" value="diff_1">
-                <input type="submit" value="送出表單">
-                <br>
-            </form>
-            -->
             {% csrf_token %}
-            <input type="file" class='pb1 rounded' name="file1" required="" id="Upfile">
+            <input type='text' class=' rounded' name="file1" required="" id= "Num" placeholder='   輸入NumX'>
             <input type="hidden" name="page" value="diff_1">
-            <button type='button' class='border-light    rounded' onclick="loadXMLDoc()">Test</button>
+            <br>
+            <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
         </div>
-        <div class="col-3">
+        <div class="col-3 border" >
+<pre>
+倘若我們對一支程式運算式進行更改
+看向左邊的例子，你可以發現原本的">"
+被改成了"<"，而這樣小小的改變呢，
+便足以造成這整個程式運行的結果出現
+變化。
+
+觀察左邊的程式就可以發現，程式在
+變更運算符號前後的return值會
+會完全不一樣。
+
+可以在中間的輸入框輸入數字以測試。
+</pre >
         </div>
     </div>
+
     <div class="row">
         <div class="col-6">
             <hr>
         </div>
     </div>
-    <h1 class="" style="">輸出結果</h1>
-    <div class="row pt1">
+
+    <h1 class="" style="">執行結果</h1>
+    <div class='row pt1'>
+        <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
+    </div>
+
+    <div class="row">
         <div class="col-6 border overflow_scroll wh30060 ">
-<pre id='output'>
-{{ans}}
-{{ error }}
+<pre id='output_before' style="display:none" >
+</pre>
+<pre id='output_after' style="display:none" >
 </pre>
         </div>
+
+    <!--
         <div class='col-6'>
             <div class="graph">
             <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
@@ -104,64 +128,83 @@ def T69():
             <p id='myP' class='text-center relative2' ></p>
             <p id='myp2' class='text-center relative2' ></p>
         </div>
+    -->
+
     </div>
+
 </div>
 
 <script>
     function loadXMLDoc()
     {
         var xmlhttp;
-        if (typeof(document.getElementById("Upfile").files[0]) == 'undefined')
+
+        if (document.getElementById("Num").value == '')
             {
-                alert("請選擇要上傳的檔案")
+                alert("請輸入數字")
                 return;
             }
         if (window.XMLHttpRequest)
-        {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-        }
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
         else
-        {// code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
         xmlhttp.onreadystatechange=function()
         {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
-            {
-                var elem1 = document.getElementById("myBar");
-                var elem2 = document.getElementById("myP");
-                var width = 1;
-                
-                js_ans = JSON.parse(xmlhttp.response)
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    js_ans = JSON.parse(xmlhttp.response)
+                    output_before = document.getElementById("output_before"); 
+                    output_after = document.getElementById("output_after");
+                    output_before.innerHTML = "變異前:\n" + js_ans.ans1;
+                    output_after.innerHTML = "變異後:\n" + js_ans.ans2;
+                    unmutate = document.getElementById('output_before');
+                    unmutate.style.cssText = "";
 
-                var id = setInterval(frame, 20);
-                var elemp2 = document.getElementById('myp2')
-
-                function frame() {
-                    if (width >= parseFloat(js_ans.killper)) {
-                        elem1.style.width = parseFloat(js_ans.killper) + '%';
-                        elem2.innerHTML = parseFloat(js_ans.killper) + '%';
-                        elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
-                        document.getElementById("output").innerHTML = js_ans.ans
-                        clearInterval(id);
-                    } else {
-                        width++;
-                        elem1.style.width = width + '%';
-                        elem2.innerHTML = width + '%';
-                    }
                 }
-            }
         }
 
-        xmlhttp.open("POST","{% url 'upload_file' %}",true);
+        xmlhttp.open("POST","{% url 'diff_1' %}",true);
         xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
-        var f_obj = document.getElementById("Upfile").files[0];
+        var Num_obj = document.getElementById("Num").value;
         var data = new FormData();
 
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
-        data.append("file1", f_obj);
-        data.append("page", "diff_1");
+        data.append("Num", Num_obj);
         xmlhttp.send(data);
     }
+</script>
+
+<script>
+
+function before(){
+    unmutate = document.getElementById('unmutate');
+    mutated = document.getElementById('mutated');
+    unmutate.style.cssText = "";
+    mutated.style.cssText = "display:none";
+}
+function after(){
+    unmutate = document.getElementById('unmutate');
+    mutated = document.getElementById('mutated');
+    unmutate.style.cssText = "display:none";
+    mutated.style.cssText = "";
+}
+function ans_before(){
+    unmutate = document.getElementById('output_before');
+    mutated = document.getElementById('output_after');
+    unmutate.style.cssText = "";
+    mutated.style.cssText = "display:none";
+}
+function ans_after(){
+    unmutate = document.getElementById('output_before');
+    mutated = document.getElementById('output_after');
+    unmutate.style.cssText = "display:none";
+    mutated.style.cssText = "";
+}
+
+
 </script>
 {% endblock %}
