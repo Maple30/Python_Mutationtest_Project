@@ -4,6 +4,8 @@ sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/muta
 import mutation
 sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/T35")
 import T35, mutateT35
+sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/gcd")
+import gcd, mutategcd
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
@@ -91,6 +93,7 @@ def diff_1(request):
 
 #Level-2題目處理
 def diff_2(request):
+    
     return render(request, 'mutation_test/diff_2.html')
 
 #Level-3題目處理

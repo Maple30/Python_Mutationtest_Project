@@ -51,13 +51,13 @@
     <div class='row'>
         <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="after()">變異後 </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick='assert_part()'>assert_func </button>
     </div>
     <div class="row">
         <div class="col-6 border overflow_scroll wh30060">
 <pre id='unmutate' style="">
-{{ suc }}
 # 變異前
-def T35():
+def T35(NumX):
     if 3 > NumX:
         return "yes"
     else:
@@ -65,15 +65,25 @@ def T35():
 </pre>
 
 <pre id='mutated' style="display:none">
-{{ suc }}
 # 變異後
-def T35():
+def T35(NumX):
     if 3 < NumX:
         return "yes"
     else:
         return "no"
 </pre>
+<pre id='assert_part' style="display:none">
+import T35
 
+def assert_func(ans,NumX):
+    if T35(NumX) == ans:
+        return "通過"
+    else:
+        return "失敗"
+
+ans = "no"
+print(assert_func(ans, NumX))
+</pre>
         </div>
         <div class="col-3 align-self-end">
             {% csrf_token %}
@@ -84,11 +94,16 @@ def T35():
         </div>
         <div class="col-3 border" >
 <pre>
-倘若我們對一支程式運算式進行更改
-看向左邊的例子，你可以發現原本的">"
-被改成了"<"，而這樣小小的改變呢，
-便足以造成這整個程式運行的結果出現
-變化。
+變異測試，是為了確定單元測試正確
+的一種測試。
+
+假設我們對一支程式運算式進行更改
+像是左邊的例子，你可以發現原本的">"
+被改成了"<"，這就是一種變異，原先的
+程式變成了另一支程式，所以當我們使用
+原先的單元測試去測試這支變異程式時，
+單元測試不應該通過，否則這個單元測試
+就是沒有意義的。
 
 觀察左邊的程式就可以發現，程式在
 變更運算符號前後的return值會
@@ -104,11 +119,12 @@ def T35():
             <hr>
         </div>
     </div>
-
+    
     <h1 class="" style="">執行結果</h1>
     <div class='row pt1'>
         <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
+
     </div>
 
     <div class="row">
@@ -185,13 +201,24 @@ function before(){
     mutated = document.getElementById('mutated');
     unmutate.style.cssText = "";
     mutated.style.cssText = "display:none";
+    assert.style.cssText = "";
 }
 function after(){
     unmutate = document.getElementById('unmutate');
     mutated = document.getElementById('mutated');
     unmutate.style.cssText = "display:none";
     mutated.style.cssText = "";
+    assert.style.cssText = "";
 }
+function assert_part(){
+    assert = document.getElementById('assert_part');
+    unmutate = document.getElementById('unmutate');
+    mutated = document.getElementById('mutated');
+    assert.style.cssText = "display:none";
+    unmutate.style.cssText = "";
+    mutated.style.cssText = "";
+}
+
 function ans_before(){
     unmutate = document.getElementById('output_before');
     mutated = document.getElementById('output_after');
