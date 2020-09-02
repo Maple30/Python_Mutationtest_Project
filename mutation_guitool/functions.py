@@ -122,6 +122,7 @@ def output_str_hadler(totalprograms, Killper, suvived):
 
 # 計算kill比率並回傳輸出結果
 def killpercent(beslipt_output=list(), assert_all_fun = []):
+    print(assert_all_fun)
     total = len(beslipt_output)
     killed_counter = 0
     kill_success_test_name = []
@@ -152,8 +153,10 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
             for p,item in enumerate(one):
                 if "[100%]" in item:
                     suvived.append([item.split()[0]])
-                    suvived[-1].append(assert_all_fun[0])
-                    suvived[-1].append(assert_all_fun[1])
+                    # 將所有function name放入
+                    for funName in assert_all_fun:
+                        suvived[-1].append(funName)
+
     print(suvived)
     # for i in suvived:
     #     with open(i[0], 'r', encoding='UTF-8') as file:

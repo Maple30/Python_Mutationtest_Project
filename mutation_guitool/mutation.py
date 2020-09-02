@@ -52,14 +52,15 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
         cmd = "pytest " + mus #要有空格==> pytest mus
         #shell set True can run
         output.append(subprocess.run([cmd], capture_output=True, shell=True).stdout.decode())
+
     #對output list內的每組字串以\n分割
     beslipt_output = []
 
     for item in output:
         beslipt_output.append(item.split('\n'))
-    # for i in beslipt_output:
-    #     for j in i:
-    #         print(j)
+    for i in beslipt_output:
+        for j in i:
+            print(j)
     output_string = killpercent(beslipt_output, assert_all_fun)
 
     return output_string

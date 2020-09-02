@@ -54,8 +54,8 @@ entry_assert_filename.grid(column=0,row=0,columnspan=2)
 entry_mutate_filename = tk.Entry(window, width=30, font=("宋體", 10, 'bold'))
 entry_mutate_filename.grid(column=0,row=1,columnspan=2)
 
-entry_assert_filename.insert('insert', "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_guitool/test_assert.py")
-entry_mutate_filename.insert('insert', "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_guitool/threefive.py")
+entry_assert_filename.insert('insert', "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_guitool/test_NetGame.py")
+entry_mutate_filename.insert('insert', "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_guitool/NetGame.py")
 # entry_filename = tk.Entry(window, width=30, font=("宋體", 10, 'bold'))
 # entry_filename.grid(column=0,row=0,columnspan=2)
 # 嘗試輸出

@@ -8,14 +8,3 @@ def T69():
         return "yes"
     else:
         return "no"
-
-# def Tandor():
-#     if 6>9 and 10<12:
-#         return "yes"
-#     else:
-#         return "no"
-# def Tbi():
-#     if 6>>1 == 3:
-#         return "yes"
-#     else:
-            #         return "no"

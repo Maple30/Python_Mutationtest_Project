@@ -51,7 +51,7 @@
     <div class='row'>
         <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="after()">變異後 </button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick='assert_part()'>assert_func </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="assert_part()">assert_func </button>
     </div>
     <div class="row">
         <div class="col-6 border overflow_scroll wh30060">
@@ -72,27 +72,27 @@ def T35(NumX):
     else:
         return "no"
 </pre>
-<pre id='assert_part' style="display:none">
-import T35
 
+<pre id='assert_part' style="display:none">
+# assert_func
+import T35
 def assert_func(ans,NumX):
     if T35(NumX) == ans:
         return "通過"
     else:
         return "失敗"
-
 ans = "no"
 print(assert_func(ans, NumX))
 </pre>
         </div>
-        <div class="col-3 align-self-end">
+        <!-- <div class="col-3 align-self-end">
             {% csrf_token %}
             <input type='text' class=' rounded' name="file1" required="" id= "Num" placeholder='   輸入NumX'>
             <input type="hidden" name="page" value="diff_1">
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
-        </div>
-        <div class="col-3 border" >
+        </div> -->
+        <div class="col-3 border offset-1" >
 <pre>
 變異測試，是為了確定單元測試正確
 的一種測試。
@@ -115,8 +115,13 @@ print(assert_func(ans, NumX))
     </div>
 
     <div class="row">
-        <div class="col-6">
-            <hr>
+        <div class="col-6 offset-3  ">
+            {% csrf_token %}
+            <input type='text' class='rounded' name="file1" required="" id= "Num" placeholder='輸入NumX'>
+            <input type="hidden" name="page" value="diff_1">
+            <br>
+            <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
+
         </div>
     </div>
     
@@ -124,7 +129,6 @@ print(assert_func(ans, NumX))
     <div class='row pt1'>
         <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
-
     </div>
 
     <div class="row">
@@ -201,22 +205,23 @@ function before(){
     mutated = document.getElementById('mutated');
     unmutate.style.cssText = "";
     mutated.style.cssText = "display:none";
-    assert.style.cssText = "";
+    assert.style.cssText = "display:none";
 }
 function after(){
     unmutate = document.getElementById('unmutate');
     mutated = document.getElementById('mutated');
-    unmutate.style.cssText = "display:none";
     mutated.style.cssText = "";
-    assert.style.cssText = "";
+    unmutate.style.cssText = "display:none";
+    assert.style.cssText = "display:none";
 }
+
 function assert_part(){
     assert = document.getElementById('assert_part');
     unmutate = document.getElementById('unmutate');
     mutated = document.getElementById('mutated');
-    assert.style.cssText = "display:none";
-    unmutate.style.cssText = "";
-    mutated.style.cssText = "";
+    assert.style.cssText = "";
+    unmutate.style.cssText = "display:none";
+    mutated.style.cssText = "display:none";
 }
 
 function ans_before(){
