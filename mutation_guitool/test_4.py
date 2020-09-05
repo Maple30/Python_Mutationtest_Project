@@ -6,7 +6,7 @@ def game(X, Y):
         X = 2
         return X
     if Y == 10:
-        X = 3 
+        X = 3
     return X
 import sys, pytest
 

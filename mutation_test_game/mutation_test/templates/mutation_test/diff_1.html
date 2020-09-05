@@ -47,7 +47,16 @@
 {% block temp %}
 
 <div class="container">
-    <h1 class="" style="margin-top:20px;">Level-1</h1>
+    <div class="row">
+        <div class="col-6">
+            <h1 class="" style="margin-top:20px;">Level-1</h1>
+        </div>
+
+        <div class="col-6">
+            <h1 class="" style="margin-top:20px;">Ans</h1>
+        </div>
+    </div>
+
     <div class='row'>
         <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="after()">變異後 </button>
@@ -92,25 +101,14 @@ print(assert_func(ans, NumX))
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
         </div> -->
-        <div class="col-3 border offset-1" >
-<pre>
-變異測試，是為了確定單元測試正確
-的一種測試。
-
-假設我們對一支程式運算式進行更改
-像是左邊的例子，你可以發現原本的">"
-被改成了"<"，這就是一種變異，原先的
-程式變成了另一支程式，所以當我們使用
-原先的單元測試去測試這支變異程式時，
-單元測試不應該通過，否則這個單元測試
-就是沒有意義的。
-
-觀察左邊的程式就可以發現，程式在
-變更運算符號前後的return值會
-會完全不一樣。
-
-可以在中間的輸入框輸入數字以測試。
-</pre >
+        <div id="div_ans" class="col-3">
+            <!-- <input class="user" name="user" style="width:30%;"/> -->
+            <!-- <input class="user" name="user" style="width:30%;"/> -->
+            <!-- <input class="user" name="user" style="width:30%;"/> -->
+            <!-- <input class="user" name="user" style="width:30%;"/> -->
+        </div>
+        <div class="col-3">
+            <button type='button' class='border-light rounded' onclick="add_ans()">Add Ans</button>
         </div>
     </div>
 
@@ -152,6 +150,7 @@ print(assert_func(ans, NumX))
 
     </div>
 
+
 </div>
 
 <script>
@@ -186,6 +185,13 @@ print(assert_func(ans, NumX))
 
                 }
         }
+        /*抓input*/
+        var upload_pic = new Array()
+        var len = document.querySelectorAll(".user").length
+        for(var i = 0; i < len; i++){
+            var v = document.querySelectorAll(".user")[i].value
+            upload_pic.push(v)
+        }
 
         xmlhttp.open("POST","{% url 'diff_1' %}",true);
         xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
@@ -194,6 +200,7 @@ print(assert_func(ans, NumX))
 
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
         data.append("Num", Num_obj);
+        data.append("input", upload_pic);
         xmlhttp.send(data);
     }
 </script>
@@ -236,7 +243,13 @@ function ans_after(){
     unmutate.style.cssText = "display:none";
     mutated.style.cssText = "";
 }
-
-
+function add_ans(){
+    var parent = document.getElementById("div_ans")
+    var input = document.createElement("input")
+    input.setAttribute("class", "user rounded ")
+    input.setAttribute("name", "user")
+    input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
+    parent.appendChild(input)
+}
 </script>
 {% endblock %}

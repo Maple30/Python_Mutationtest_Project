@@ -149,10 +149,11 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
             for p,item in enumerate(one):
                 if "[100%]" in item:
                     suvived.append([item.split()[0]])
-                    suvived[-1].append(assert_all_fun[0])
-                    suvived[-1].append(assert_all_fun[1])
 
-                    
+                    # 將所有function name放入
+                    for funName in assert_all_fun:
+                        suvived[-1].append(funName)
+
     # print("bslipt_output = ")
     # print(beslipt_output)
     # print("total = " + str(total))

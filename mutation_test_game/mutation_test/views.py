@@ -80,7 +80,18 @@ def upload_file(request):
 def diff_1(request):
     if request.method == 'POST':
         Num = int(request.POST['Num'])
-        # print(request.POST['Num'])
+        print(request.POST['input'])
+        a = request.POST['input'].split(',')
+        print(a)
+        numar = []
+        for i in a:
+            try:
+                numar.append(int(i))
+            except:
+                print("有非數字的輸入")
+                continue
+        print(numar)
+
         unmutate_ans = ''
         mutated_ans = ''
         unmutate_ans = T35.T35(int(request.POST['Num']))
