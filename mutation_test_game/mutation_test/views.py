@@ -4,8 +4,8 @@ sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/muta
 import mutation
 sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/T35")
 import T35, mutateT35
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/gcd")
-import gcd, mutategcd
+sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_1")
+import AssertCode_Processer
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
@@ -79,27 +79,33 @@ def upload_file(request):
 #Level-1題目處理
 def diff_1(request):
     if request.method == 'POST':
-        Num = int(request.POST['Num'])
         print(request.POST['input'])
+        #分割字串
         a = request.POST['input'].split(',')
         print(a)
-        numar = []
+
+        num_ar = []
+        #捨棄非數字的輸入
         for i in a:
             try:
-                numar.append(int(i))
+                num_ar.append(int(i))
             except:
                 print("有非數字的輸入")
                 continue
-        print(numar)
-
-        unmutate_ans = ''
-        mutated_ans = ''
-        unmutate_ans = T35.T35(int(request.POST['Num']))
-        mutated_ans = mutateT35.T35(int(request.POST['Num']))
-        print(unmutate_ans, mutated_ans)
+        print(num_ar)
+        # assert game(3,10) == 2
+        # assert game(10,0) == 10
+        # assert game(10,1) == 1
+        AssertCode_Processer.AssertCode([(3,10), (10,0)])
+        # unmutate_ans = ''
+        # mutated_ans = ''
+        # unmutate_ans = T35.T35(int(request.POST['Num']))
+        # mutated_ans = mutateT35.T35(int(request.POST['Num']))
+        # print(unmutate_ans, mutated_ans, request.POST['Num'])
+        # print(unmutate_ans, mutated_ans)
         # T35.T35(int(request.POST['Num']))
-
-        return JsonResponse({'ans1':unmutate_ans,'ans2':mutated_ans})
+        return JsonResponse({'ans1':"Testing",'ans2':"Testing"})
+        # return JsonResponse({'ans1':unmutate_ans,'ans2':mutated_ans})
     return render(request, 'mutation_test/diff_1.html')
 
 #Level-2題目處理

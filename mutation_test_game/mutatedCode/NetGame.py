@@ -5,6 +5,6 @@ def game(X, Y):
     elif (X-Y) < 2:
         X = 2
         return X
-    if Y != 10:
+    if Y > 10:
         X = 3
     return X

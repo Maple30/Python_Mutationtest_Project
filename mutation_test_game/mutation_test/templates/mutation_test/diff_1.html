@@ -102,20 +102,14 @@ print(assert_func(ans, NumX))
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
         </div> -->
         <div id="div_ans" class="col-3">
-            <!-- <input class="user" name="user" style="width:30%;"/> -->
-            <!-- <input class="user" name="user" style="width:30%;"/> -->
-            <!-- <input class="user" name="user" style="width:30%;"/> -->
-            <!-- <input class="user" name="user" style="width:30%;"/> -->
+            <!-- <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;">
+            <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;">
+            <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;">
+            <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;"> -->
         </div>
         <div class="col-3">
-            <button type='button' class='border-light rounded' onclick="add_ans()">Add Ans</button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6 offset-3  ">
             {% csrf_token %}
-            <input type='text' class='rounded' name="file1" required="" id= "Num" placeholder='輸入NumX'>
+            <button type='button' class='border-light rounded' onclick="add_ans()">Add Ans</button>
             <input type="hidden" name="page" value="diff_1">
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
@@ -123,7 +117,7 @@ print(assert_func(ans, NumX))
         </div>
     </div>
     
-    <h1 class="" style="">執行結果</h1>
+    <h1 class="pt1" style="">執行結果</h1>
     <div class='row pt1'>
         <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
@@ -153,12 +147,31 @@ print(assert_func(ans, NumX))
 
 </div>
 
+
+
+<!-- 預先載入的物件 -->
+<script>
+    var parent = document.getElementById("div_ans")
+    for(i=0; i < 6; i++){
+        var input = document.createElement("input")
+        input.setAttribute("class", "user rounded")
+        input.setAttribute("name", "user")
+        input.setAttribute("Placeholder", "Num")
+        input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
+        parent.appendChild(input)
+    }
+
+
+</script>
+<!-- 預先載入的物件 -->
+
+<!-- 送資料到後端 ajax -->
 <script>
     function loadXMLDoc()
     {
         var xmlhttp;
 
-        if (document.getElementById("Num").value == '')
+        if (document.getElementsByName("Num").value == '')
             {
                 alert("請輸入數字")
                 return;
@@ -195,7 +208,7 @@ print(assert_func(ans, NumX))
 
         xmlhttp.open("POST","{% url 'diff_1' %}",true);
         xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
-        var Num_obj = document.getElementById("Num").value;
+        var Num_obj = document.getElementsByName("Num").value;
         var data = new FormData();
 
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
@@ -204,7 +217,9 @@ print(assert_func(ans, NumX))
         xmlhttp.send(data);
     }
 </script>
+<!-- 送資料到後端 ajax -->
 
+<!-- BUTTOM 控制 -->
 <script>
 
 function before(){
@@ -246,10 +261,14 @@ function ans_after(){
 function add_ans(){
     var parent = document.getElementById("div_ans")
     var input = document.createElement("input")
-    input.setAttribute("class", "user rounded ")
+    input.setAttribute("class", "user rounded")
+    // input.setAttribute("id", "Num")
     input.setAttribute("name", "user")
+    input.setAttribute("Placeholder", "Num")
     input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
     parent.appendChild(input)
 }
 </script>
+<!-- BUTTOM 控制 -->
+
 {% endblock %}

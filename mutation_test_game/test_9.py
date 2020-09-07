@@ -1,18 +1,10 @@
-def T35():
-    if 3 == 5:
-        return "yes"
-    else:
-        return "no"
-def T69():
-    if 6+1 < 9:
-        return "yes"
-    else:
-        return "no"
-import sys, pytest
-
-# Here is your code
-def test_ans35():
-    assert T35() == "no"
-def test_ans69():
-    assert T69() == "no"
-# Here is your code
+def game(X, Y):
+    if X >= 10 and Y==1:
+        X=1
+        return X
+    elif (X-Y) == 2:
+        X = 2
+        return X
+    if Y > 10:
+        X = 3
+    return X
