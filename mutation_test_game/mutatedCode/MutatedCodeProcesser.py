@@ -5,7 +5,6 @@ from functions import *
 mutate_program_filename = "NetGame.py"
 options=[True,False,False,False]
 
-
 mutations = [] #存放變異體
 with open(mutate_program_filename, 'r', encoding='UTF-8') as file:
     temp = file.readline() #讀入要做測試的程式
@@ -34,7 +33,7 @@ with open(mutate_program_filename, 'r', encoding='UTF-8') as file:
     except IndexError as e:
         printf('No symbol can be mutate')
 
-AssertPart = "" ##讀入assert code 進行改寫
+AssertPart = "" #讀入assert code 進行改寫
 
 mu_filenames = [] #存放變異體的檔案名稱
 for i,item in enumerate(mutations): #產生變異體檔案出來

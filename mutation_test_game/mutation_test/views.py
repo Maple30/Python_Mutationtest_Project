@@ -4,7 +4,7 @@ sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/muta
 import mutation
 sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/T35")
 import T35, mutateT35
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_1")
+sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_1/")
 import AssertCode_Processer
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -96,7 +96,8 @@ def diff_1(request):
         # assert game(3,10) == 2
         # assert game(10,0) == 10
         # assert game(10,1) == 1
-        AssertCode_Processer.AssertCode([(3,10), (10,0)])
+        output_string, killper = AssertCode_Processer.AssertCode([(3,10), (10,0)])
+        print(output_string, killper)
         # unmutate_ans = ''
         # mutated_ans = ''
         # unmutate_ans = T35.T35(int(request.POST['Num']))
@@ -129,7 +130,7 @@ def tool_download(request):
     z_file.close()
     # os.remove(z_file.name)
     response = HttpResponse(data, content_type='application/zip')
-    
+
     response['Content-Disposition'] = 'attachment;filename=' + parse.quote("guitool.zip ")
     return response
 

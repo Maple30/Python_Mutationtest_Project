@@ -63,7 +63,6 @@ def T69():
     else:
         return "no"
 </pre>
-
         </div>
         <div class="col-3 align-self-end">
             <!--
@@ -76,11 +75,10 @@ def T69():
             </form>
             -->
             
-        
             {% csrf_token %}
             <input type="file" class='pb1 rounded' name="file1" required="" id="Upfile">
             <input type="hidden" name="page" value="diff_1">
-            <button type='button' class='border-light    rounded' onclick="loadXMLDoc()">Test</button>
+            <button type='button' class = 'border-light rounded' onclick = "loadXMLDoc()">Test</button>
         </div>
         <div class="col-3">
         </div>
@@ -101,7 +99,7 @@ def T69():
         <div class='col-6'>
             <div class="graph">
             <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
-            </div>  
+            </div>
             <p class='text-center relative2'>kill rate</p>
             <p id='myP' class='text-center relative2' ></p>
             <p id='myp2' class='text-center relative2' ></p>

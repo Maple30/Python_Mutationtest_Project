@@ -9,6 +9,6 @@ def game(X, Y):
         X = 3
     return X
 def test_game():
-    assert game(3,10)=2
-    assert game(10,0)=10
+    assert game(3,10)==2
+    assert game(10,0)==10
     
