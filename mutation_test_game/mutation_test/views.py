@@ -98,16 +98,22 @@ def diff_1(request):
         # assert game(10,1) == 1
         output_string, killper = AssertCode_Processer.AssertCode([(3,10), (10,0)])
         print(output_string, killper)
-        # unmutate_ans = ''
-        # mutated_ans = ''
-        # unmutate_ans = T35.T35(int(request.POST['Num']))
-        # mutated_ans = mutateT35.T35(int(request.POST['Num']))
-        # print(unmutate_ans, mutated_ans, request.POST['Num'])
-        # print(unmutate_ans, mutated_ans)
-        # T35.T35(int(request.POST['Num']))
+
         return JsonResponse({'ans1':"Testing",'ans2':"Testing"})
         # return JsonResponse({'ans1':unmutate_ans,'ans2':mutated_ans})
+    # print(all_shukudai)
+
     return render(request, 'mutation_test/diff_1.html')
+def diff_1_load(request):
+    basedir = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/"
+    all_shukudai = []
+    for i in range(1,4):
+        with open(basedir + "test_{num}.py".format(num=i), "r", encoding="UTF-8") as file:
+            all_shukudai.append(file.read())
+    for i in all_shukudai:
+        print(i)
+
+    return JsonResponse({'all_shukudai' : all_shukudai})
 
 #Level-2題目處理
 def diff_2(request):

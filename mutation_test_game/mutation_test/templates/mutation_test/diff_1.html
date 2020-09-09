@@ -58,12 +58,47 @@
     </div>
 
     <div class='row'>
-        <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
+        <div class="col-6">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" style="padding-left:30%">
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                  </div>
+                  <div class="carousel-item" style="padding-left:30%">
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                  </div>
+                  <div class="carousel-item" style="padding-left:30%">
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                    <button>Test</button>
+                  </div>
+                </div>
+                <a style="background-color: #333;" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a style="background-color: #333;" class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+    
+        </div>
+        
+        <!-- <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="after()">變異後 </button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="assert_part()">assert_func </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="assert_part()">assert_func </button> -->
     </div>
     <div class="row">
-        <div class="col-6 border overflow_scroll wh30060">
+        <div id="div_pre" class="col-6 border overflow_scroll wh30060">
 <pre id='unmutate' style="">
 # 變異前
 def T35(NumX):
@@ -93,6 +128,12 @@ def assert_func(ans,NumX):
 ans = "no"
 print(assert_func(ans, NumX))
 </pre>
+{% for item in all_shukudai %}
+    <pre id='' style="display:none">
+{{item}}
+    </pre>
+{% endfor %}
+
         </div>
         <!-- <div class="col-3 align-self-end">
             {% csrf_token %}
@@ -147,6 +188,7 @@ print(assert_func(ans, NumX))
 
 </div>
 
+  
 
 
 <!-- 預先載入的物件 -->
@@ -161,9 +203,41 @@ print(assert_func(ans, NumX))
         parent.appendChild(input)
     }
 
-
 </script>
 <!-- 預先載入的物件 -->
+
+<!-- 預先載入題目 -->
+<script>
+    
+    function loadshukudai(){
+        var xhttp = new XMLHttpRequest();
+    
+        xhttp.onreadystatechange=function()
+        {
+            if (xhttp.readyState==4 && xhttp.status==200)
+                {
+                    js_shukudai = JSON.parse(xhttp.response)
+                    console.log(js_shukudai.all_shukudai[0])
+                    
+                    var parent = document.getElementById("div_pre")
+                    for(i=0 ;i<js_shukudai.all_shukudai.length ;i++){
+                        var pre = document.createElement("pre")
+                        pre.style.cssText = "display:none";
+                        pre.innerHTML = js_shukudai.all_shukudai[i]
+                        parent.appendChild(pre)
+                    }
+                    // <pre id='assert_part' style="display:none">
+                }
+        }
+
+        xhttp.open("GET", "{% url 'diff_1_load' %}", true);
+        xhttp.send();
+    }
+    loadshukudai()
+
+</script>
+<!-- 預先載入題目 -->
+
 
 <!-- 送資料到後端 ajax -->
 <script>
@@ -219,6 +293,7 @@ print(assert_func(ans, NumX))
 </script>
 <!-- 送資料到後端 ajax -->
 
+
 <!-- BUTTOM 控制 -->
 <script>
 
@@ -270,5 +345,8 @@ function add_ans(){
 }
 </script>
 <!-- BUTTOM 控制 -->
+<div>
 
+    
+</div>
 {% endblock %}

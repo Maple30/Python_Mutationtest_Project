@@ -13,4 +13,5 @@ urlpatterns = [
     path('diff_3', views.diff_3, name='diff_3'),
     path('ajax', views.ajax, name='ajax'),
     path('tool', views.tool_download, name='tool_download'),
+    path('diff_1_load', views.diff_1_load, name='diff_1_load'),
 ]
