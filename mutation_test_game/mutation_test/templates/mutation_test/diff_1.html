@@ -160,6 +160,7 @@ print(assert_func(ans, NumX))
     
     <h1 class="pt1" style="">執行結果</h1>
     <div class='row pt1'>
+        
         <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
     </div>
@@ -171,7 +172,9 @@ print(assert_func(ans, NumX))
 <pre id='output_after' style="display:none" >
 </pre>
         </div>
-
+        <div class = "col-3" id="timecount">
+            {{timecout}}
+        </div>
     <!--
         <div class='col-6'>
             <div class="graph">
@@ -217,7 +220,7 @@ print(assert_func(ans, NumX))
             if (xhttp.readyState==4 && xhttp.status==200)
                 {
                     js_shukudai = JSON.parse(xhttp.response)
-                    console.log(js_shukudai.all_shukudai[0])
+                    // console.log(js_shukudai.all_shukudai[0])
                     
                     var parent = document.getElementById("div_pre")
                     for(i=0 ;i<js_shukudai.all_shukudai.length ;i++){
@@ -269,7 +272,6 @@ print(assert_func(ans, NumX))
                     output_after.innerHTML = "變異後:\n" + js_ans.ans2;
                     unmutate = document.getElementById('output_before');
                     unmutate.style.cssText = "";
-
                 }
         }
         /*抓input*/
@@ -345,8 +347,37 @@ function add_ans(){
 }
 </script>
 <!-- BUTTOM 控制 -->
-<div>
+<!-- 計時器運行 -->
+<script>
+    var id = setInterval(TimeCount, 1000);
+    function TimeCount(){
+        time = document.getElementById("timecount")
+        console.log(time)
+        Timearr = time.innerHTML.replace(" ","").split(":")
+        console.log(Timearr)
+        min = parseInt(Timearr[0])
+        sec = parseInt(Timearr[1])
+        console.log(min,sec)
+        sec += 1
+        if (sec%60 == 0){
+            min += 1
+            sec = "0" + 00.toString()
+            time.innerHTML = min.toString() + ":" + sec
+        }else {
+            if (sec < 10){
+                sec = "0" + sec.toString()
+            }
+            
+            time.innerHTML = min.toString() + ":" + sec.toString()
+        }
+        
+        
+    }
 
-    
+</script>
+
+<!-- 計時器運行 -->
+<div>
+{{timecout}}
 </div>
 {% endblock %}
