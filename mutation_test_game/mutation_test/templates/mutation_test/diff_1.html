@@ -58,44 +58,14 @@
     </div>
 
     <div class='row'>
-        <div class="col-6">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active" style="padding-left:30%">
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                  </div>
-                  <div class="carousel-item" style="padding-left:30%">
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                  </div>
-                  <div class="carousel-item" style="padding-left:30%">
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                    <button>Test</button>
-                  </div>
-                </div>
-                <a style="background-color: #333;" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a style="background-color: #333;" class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-    
-        </div>
+        <!-- <div class="col-6">
+            <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
+        </div> -->
         
-        <!-- <button type="button" class="btn btn-primary btn-sm" onclick="before()">變異前</button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="after()">變異後 </button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="assert_part()">assert_func </button> -->
+        <button type = "button" class="btn btn-primary btn-sm" onclick="before()">變異1</button>
+        <button type = "button" class="btn btn-secondary btn-sm" onclick="after()">變異2</button>
+        <button type = "button" class="btn btn-primary btn-sm" onclick="assert_part()">變異3</button>
     </div>
     <div class="row">
         <div id="div_pre" class="col-6 border overflow_scroll wh30060">
@@ -152,6 +122,7 @@ print(assert_func(ans, NumX))
             {% csrf_token %}
             <button type='button' class='border-light rounded' onclick="add_ans()">Add Ans</button>
             <input type="hidden" name="page" value="diff_1">
+            <input type="hidden" name="bangou" value="">
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
 
@@ -281,7 +252,7 @@ print(assert_func(ans, NumX))
             var v = document.querySelectorAll(".user")[i].value
             upload_pic.push(v)
         }
-
+        
         xmlhttp.open("POST","{% url 'diff_1' %}",true);
         xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
         var Num_obj = document.getElementsByName("Num").value;
@@ -290,6 +261,7 @@ print(assert_func(ans, NumX))
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
         data.append("Num", Num_obj);
         data.append("input", upload_pic);
+        data.append("bangou", $("[name='bangou']").val())
         xmlhttp.send(data);
     }
 </script>
@@ -361,9 +333,15 @@ function add_ans(){
         sec += 1
         if (sec%60 == 0){
             min += 1
+            if (min < 10){
+                min = "0" + min.toString()
+            }
             sec = "0" + 00.toString()
             time.innerHTML = min.toString() + ":" + sec
         }else {
+            if (min < 10){
+                min = "0" + min.toString()
+            }
             if (sec < 10){
                 sec = "0" + sec.toString()
             }
@@ -376,8 +354,4 @@ function add_ans(){
 
 </script>
 
-<!-- 計時器運行 -->
-<div>
-{{timecout}}
-</div>
 {% endblock %}
