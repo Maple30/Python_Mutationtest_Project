@@ -122,7 +122,7 @@ print(assert_func(ans, NumX))
             {% csrf_token %}
             <button type='button' class='border-light rounded' onclick="add_ans()">Add Ans</button>
             <input type="hidden" name="page" value="diff_1">
-            <input type="hidden" name="bangou" value="">
+            <input type="hidden" name="bangou" value="{{bangou}}">
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
 
@@ -257,11 +257,11 @@ print(assert_func(ans, NumX))
         xmlhttp.setRequestHeader('Conten-Type', 'application/x-www-foorm-urlencoded;charset-UTF-8');  //POST資料請求頭
         var Num_obj = document.getElementsByName("Num").value;
         var data = new FormData();
-
+        data.append("bangou", $("[name='bangou']").val())
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
         data.append("Num", Num_obj);
         data.append("input", upload_pic);
-        data.append("bangou", $("[name='bangou']").val())
+        console.log(document.getElementsByName('bangou').value)
         xmlhttp.send(data);
     }
 </script>

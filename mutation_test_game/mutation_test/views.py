@@ -32,60 +32,23 @@ def index(request):
     # Create your views here.
 
 #Level-1題目處理
-def diff_1(request):
-    global timepoint
-    
+def diff_1(request, bangou=0):
+
     # 建立不重複的數字list與紀錄對應時間的字典檔
     try:
         print(diff_1.Num_list)
     except AttributeError:
         diff_1.Num_list = []
         diff_1.Num_dic = dict()
+
         for i in range(1,1001):
             diff_1.Num_list.append(str(i))
-        print(diff_1.Num_list)
-    
-    try:
-        if Num_dic[request.Get['bangou']] == '':
-            
-            Num_dic[request.Get['bangou']] = datetime.datetime.now()
-            now = datetime.datetime.now()
-            time_subtract = time.mktime(now.timetuple()) - time.mktime(Num_dic[request.Get['bangou']])
-            timeArray = time.localtime(time_subtract)
-            timecout = time.strftime("%M:%S", timeArray)
+        # print(diff_1.Num_list)
 
-            return render(request, 'mutation_test/diff_1.html',{"timecout":timecout})
-        else:
-            now = datetime.datetime.now()
-            time_subtract = time.mktime(now.timetuple()) - time.mktime(Num_dic[request.Get['bangou']])
-            timeArray = time.localtime(time_subtract)
-            timecout = time.strftime("%M:%S", timeArray)
-
-            return render(request, 'mutation_test/diff_1.html',{"timecout":timecout})
-    except:
-        pass
-
-    # # 如果timepoint已被宣告代表使用者進入此頁面了
-    # if (isset('timepoint') and request.method != 'POST'):
-    #     # print("timepoint={timepoint}".format(timepoint = timepoint))
-    #     now = datetime.datetime.now()
-    #     print("nowtime={nowtime}".format(nowtime = now))
-    #     time_subtract = time.mktime(now.timetuple()) - time.mktime(timepoint.timetuple())
-    #     # print(time_subtract)
-    #     timeArray = time.localtime(time_subtract)
-    #     timecout = time.strftime("%M:%S", timeArray)
-    #     # print(timecout)
-    #     print("奇怪")
-    #     return render(request, 'mutation_test/diff_1.html',{"timecout":timecout})
-    # else:
-    #     timepoint = datetime.datetime.now()
-        
-        # print ("timepoint = {timepoint}".format(timepoint=timepoint))
-
-    # 使用者輸入資料的情況
     if request.method == 'POST':
         # print(request.POST['input'])
         #分割字串
+        print(request.POST)
         a = request.POST['input'].split(',')
         # print(a)
         num_ar = []
@@ -97,24 +60,61 @@ def diff_1(request):
                 print("有非數字的輸入")
                 continue
         # print(num_ar)
-        if True:
-            now = datetime.datetime.now()
-            time_subtract = time.mktime(now.timetuple()) - time.mktime(timepoint.timetuple())
-            print(time_subtract)
-
+        
         output_string, killper = AssertCode_Processer.AssertCode([(3,10), (10,0)])
         # print(output_string, killper)
+        
+        # #抓時間
+        # now = datetime.datetime.now()
+        # time_subtract = time.mktime(now.timetuple()) - time.mktime(diff_1.Num_dic[bangou])
+        # print(time_subtract)
 
         return JsonResponse({'ans1':"Testing",'ans2':"Testing"})
-    
-    # Num 是指派給使用者的數字
-    Num = diff_1.Num_list[0]
-    # 將此數字記錄到字典裡
-    diff_1.Num_dic[diff_1.Num_list[0]] = ''
-    del diff_1.Num_list[0]
 
-    return redirect('/diff_1?bangou=' + Num)
-    return render(request, 'mutation_test/diff_1.html')
+    elif request.method == 'GET':
+        #bangou=0代表是第一次進入網頁
+        if(bangou == 0):
+            # Num 是指派給使用者的數字
+            Num = diff_1.Num_list[0]
+            # 將此數字記錄到字典裡
+            diff_1.Num_dic[diff_1.Num_list[0]] = ''
+            print(diff_1.Num_dic)
+            del diff_1.Num_list[0]
+            return redirect('/diff_1/'+Num)
+        else:
+
+        # 抓時間出來
+            print(bangou)
+            print('diff_dic = ',diff_1.Num_dic)
+            
+            try:
+                if diff_1.Num_dic[bangou] == '':
+                    diff_1.Num_dic[bangou] = datetime.datetime.now()
+                    now = datetime.datetime.now()
+                    print(diff_1.Num_dic[bangou])
+                    time_subtract = time.mktime(now.timetuple()) - time.mktime(diff_1.Num_dic[bangou].timetuple())
+                    timeArray = time.localtime(time_subtract)
+                    timecout = time.strftime("%M:%S", timeArray)
+                    # print(timecout)
+                else:
+                    now = datetime.datetime.now()
+                    time_subtract = time.mktime(now.timetuple()) - time.mktime(diff_1.Num_dic[bangou].timetuple())
+                    timeArray = time.localtime(time_subtract)
+                    timecout = time.strftime("%M:%S", timeArray)
+                    # print(timecout)
+                return render(request, 'mutation_test/diff_1.html',{"timecout":timecout, "bangou":bangou})
+            except Exception as e:
+                error_class = e.__class__.__name__ #取得錯誤類型
+                detail = e.args[0] #取得詳細內容
+                cl, exc, tb = sys.exc_info() #取得Call Stack
+                lastCallStack = traceback.extract_tb(tb)[-1] #取得Call Stack的最後一筆資料
+                fileName = lastCallStack[0] #取得發生的檔案名稱
+                lineNum = lastCallStack[1] #取得發生的行號
+                funcName = lastCallStack[2] #取得發生的函數名稱
+                errMsg = "File \"{}\", line {}, in {}: [{}] {}".format(fileName, lineNum, funcName, error_class, detail)
+                print(errMsg)
+                # pass
+            return render(request, 'mutation_test/diff_1.html',{"error":"請回到首頁"})
 
 def diff_1_load(request):
     basedir = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/"

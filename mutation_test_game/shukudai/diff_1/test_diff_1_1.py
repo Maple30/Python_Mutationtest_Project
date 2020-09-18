@@ -7,8 +7,7 @@ def game(X, Y):
         return X
     if Y < 10:
         X = 3
-    return X
-def test_game():
+    return Xdef test_game():
     assert game(3,10)==2
     assert game(10,0)==10
     
