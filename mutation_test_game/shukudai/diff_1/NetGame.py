@@ -1,10 +1,13 @@
-def game(X, Y):
-    if X >= 10 and Y==1:
-        X=1
-        return X
-    elif (X-Y) < 2:
-        X = 2
-        return X
-    if Y > 10:
-        X = 3
-    return X
+def game(Num):
+    
+    reverse_Num = 0
+    list_New_Num = []
+    print(list(Num).sort(reverse=True))
+
+    # Num = "".join(list(Num).sort(reverse=True))
+    
+    print(Num)
+    
+# game("58693064")
+
+print(list(map(int,"452564")))
