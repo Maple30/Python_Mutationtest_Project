@@ -3,7 +3,7 @@ import os
 from functions import *
 
 mutate_program_filename = "NetGame.py"
-options=[True,False,False,False]
+options=[True,True,True,True]
 
 mutations = [] #存放變異體
 with open(mutate_program_filename, 'r', encoding='UTF-8') as file:
@@ -31,7 +31,7 @@ with open(mutate_program_filename, 'r', encoding='UTF-8') as file:
     try:
         mutations[0]
     except IndexError as e:
-        printf('No symbol can be mutate')
+        print('No symbol can be mutate')
 
 AssertPart = "" #讀入assert code 進行改寫
 

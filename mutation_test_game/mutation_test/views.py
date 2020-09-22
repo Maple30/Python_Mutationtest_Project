@@ -61,14 +61,9 @@ def diff_1(request, bangou=0):
                 continue
         # print(num_ar)
         
-        output_string, killper = AssertCode_Processer.AssertCode([(3,10), (10,0)])
+        output_string, killper = AssertCode_Processer.AssertCode([("12234"), ("214124")])
         # print(output_string, killper)
         
-        # #抓時間
-        # now = datetime.datetime.now()
-        # time_subtract = time.mktime(now.timetuple()) - time.mktime(diff_1.Num_dic[bangou])
-        # print(time_subtract)
-
         return JsonResponse({'ans1':"Testing",'ans2':"Testing"})
 
     elif request.method == 'GET':
@@ -114,6 +109,7 @@ def diff_1(request, bangou=0):
                 errMsg = "File \"{}\", line {}, in {}: [{}] {}".format(fileName, lineNum, funcName, error_class, detail)
                 print(errMsg)
                 # pass
+            
             return render(request, 'mutation_test/diff_1.html',{"error":"請回到首頁"})
 
 def diff_1_load(request):
