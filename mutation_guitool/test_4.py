@@ -13,7 +13,12 @@ def test_game(Ascending_power_Num):
         Ascending_power_Num = New_num
 
         if New_num in Appeared_Num:
-            return len(Appeared_Num) + 1
+            return len(Appeared_Num) % 1
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
+import sys, pytest
+
+def test_game():
+    assert game("12234")==9
+    assert game("214124")==17

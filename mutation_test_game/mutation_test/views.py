@@ -59,9 +59,10 @@ def diff_1(request, bangou=0):
             except:
                 print("有非數字的輸入")
                 continue
-        # print(num_ar)
+        print(num_ar)
         
         output_string, killper = AssertCode_Processer.AssertCode([("12234"), ("214124")])
+        print(output_string)
         # print(output_string, killper)
         
         return JsonResponse({'ans1':"Testing",'ans2':"Testing"})
@@ -73,11 +74,10 @@ def diff_1(request, bangou=0):
             Num = diff_1.Num_list[0]
             # 將此數字記錄到字典裡
             diff_1.Num_dic[diff_1.Num_list[0]] = ''
-            print(diff_1.Num_dic)
+            # print(diff_1.Num_dic)
             del diff_1.Num_list[0]
             return redirect('/diff_1/'+Num)
         else:
-
         # 抓時間出來
             print(bangou)
             print('diff_dic = ',diff_1.Num_dic)
@@ -90,13 +90,13 @@ def diff_1(request, bangou=0):
                     time_subtract = time.mktime(now.timetuple()) - time.mktime(diff_1.Num_dic[bangou].timetuple())
                     timeArray = time.localtime(time_subtract)
                     timecout = time.strftime("%M:%S", timeArray)
-                    # print(timecout)
+
                 else:
                     now = datetime.datetime.now()
                     time_subtract = time.mktime(now.timetuple()) - time.mktime(diff_1.Num_dic[bangou].timetuple())
                     timeArray = time.localtime(time_subtract)
                     timecout = time.strftime("%M:%S", timeArray)
-                    # print(timecout)
+
                 return render(request, 'mutation_test/diff_1.html',{"timecout":timecout, "bangou":bangou})
             except Exception as e:
                 error_class = e.__class__.__name__ #取得錯誤類型

@@ -1,6 +1,5 @@
 import sys, pytest
 
-def test_ans35():
-    assert T35() == "no"
-def test_ans69():
-    assert T69() == "no"
+def test_game():
+    assert game("12234")==9
+    assert game("214124")==17

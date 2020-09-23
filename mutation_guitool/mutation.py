@@ -55,12 +55,13 @@ def mutationtest(assert_program_filename="", mutate_program_filename="",options=
 
     #對output list內的每組字串以\n分割
     beslipt_output = []
-
+    
+    # 把\n替換掉
     for item in output:
         beslipt_output.append(item.split('\n'))
-    for i in beslipt_output:
-        for j in i:
-            print(j)
+    # for i in beslipt_output:
+    #     for j in i:
+    #         print(j)
     output_string = killpercent(beslipt_output, assert_all_fun)
 
     return output_string

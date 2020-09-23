@@ -8,7 +8,7 @@ def test_game(Ascending_power_Num):
         Ascending_power_Num.sort(reverse=True)
         Descending_power_Num = sorted(Ascending_power_Num)
 
-        New_num = int("".join([str(X) for X in Ascending_power_Num])) - int("".join([str(Y) for Y in Descending_power_Num]))
+        New_num = int("".join([str(X) for X in Ascending_power_Num])) + int("".join([str(Y) for Y in Descending_power_Num]))
         New_num = str(New_num)
         Ascending_power_Num = New_num
 
@@ -17,3 +17,8 @@ def test_game(Ascending_power_Num):
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
+import sys, pytest
+
+def test_game():
+    assert game("12234")==9
+    assert game("214124")==17
