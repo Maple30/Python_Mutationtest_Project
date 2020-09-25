@@ -17,6 +17,7 @@ def test_game(Ascending_power_Num):
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
+
 def test_game():
     assert game("12234")==9
     assert game("214124")==17

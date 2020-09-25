@@ -69,54 +69,10 @@
     </div>
     <div class="row">
         <div id="div_pre" class="col-6 border overflow_scroll wh30060">
-<pre id='unmutate' style="">
-# 變異前
-def T35(NumX):
-    if 3 > NumX:
-        return "yes"
-    else:
-        return "no"
-</pre>
-
-<pre id='mutated' style="display:none">
-# 變異後
-def T35(NumX):
-    if 3 < NumX:
-        return "yes"
-    else:
-        return "no"
-</pre>
-
-<pre id='assert_part' style="display:none">
-# assert_func
-import T35
-def assert_func(ans,NumX):
-    if T35(NumX) == ans:
-        return "通過"
-    else:
-        return "失敗"
-ans = "no"
-print(assert_func(ans, NumX))
-</pre>
-{% for item in all_shukudai %}
-    <pre id='' style="display:none">
-{{item}}
-    </pre>
-{% endfor %}
 
         </div>
-        <!-- <div class="col-3 align-self-end">
-            {% csrf_token %}
-            <input type='text' class=' rounded' name="file1" required="" id= "Num" placeholder='   輸入NumX'>
-            <input type="hidden" name="page" value="diff_1">
-            <br>
-            <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
-        </div> -->
+
         <div id="div_ans" class="col-3">
-            <!-- <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;">
-            <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;">
-            <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;">
-            <input class="user rounded " name="user" autocomplete="off" style="width: 30%; margin-left: 1px; margin-top: 1px;"> -->
         </div>
         <div class="col-3">
             {% csrf_token %}
@@ -125,7 +81,6 @@ print(assert_func(ans, NumX))
             <input type="hidden" name="bangou" value="{{bangou}}">
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
-
         </div>
     </div>
     
@@ -146,17 +101,6 @@ print(assert_func(ans, NumX))
         <div class = "col-3" id="timecount">
             {{timecout}}
         </div>
-    <!--
-        <div class='col-6'>
-            <div class="graph">
-            <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
-            </div>  
-            <p class='text-center relative2'>kill rate</p>
-            <p id='myP' class='text-center relative2' ></p>
-            <p id='myp2' class='text-center relative2' ></p>
-        </div>
-    -->
-
     </div>
 
 
@@ -196,10 +140,19 @@ print(assert_func(ans, NumX))
                     var parent = document.getElementById("div_pre")
                     for(i=0 ;i<js_shukudai.all_shukudai.length ;i++){
                         var pre = document.createElement("pre")
-                        pre.style.cssText = "display:none";
+                        if (i == 0){
+                            pre.style.cssText = "display:";    
+                        }else{
+                            pre.style.cssText = "display:none";
+                        }
+                        
+                        pre.setAttribute("id", i.toString(10))
                         pre.innerHTML = js_shukudai.all_shukudai[i]
+                        console.log(js_shukudai.all_shukudai[i])
                         parent.appendChild(pre)
                     }
+
+
                     // <pre id='assert_part' style="display:none">
                 }
         }

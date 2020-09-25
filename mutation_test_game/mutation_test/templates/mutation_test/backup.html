@@ -164,3 +164,33 @@ def T69():
     }
 </script>
 {% endblock %}
+
+<!-- <pre id='unmutate' style="">
+# 變異前
+def T35(NumX):
+    if 3 > NumX:
+        return "yes"
+    else:
+        return "no"
+</pre>
+
+<pre id='mutated' style="display:none">
+# 變異後
+def T35(NumX):
+    if 3 < NumX:
+        return "yes"
+    else:
+        return "no"
+</pre>
+
+<pre id='assert_part' style="display:none">
+# assert_func
+import T35
+def assert_func(ans,NumX):
+    if T35(NumX) == ans:
+        return "通過"
+    else:
+        return "失敗"
+ans = "no"
+print(assert_func(ans, NumX))
+</pre> -->
