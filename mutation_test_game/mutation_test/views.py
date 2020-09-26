@@ -61,11 +61,11 @@ def diff_1(request, bangou=0):
                 continue
         print(num_ar)
         
-        output_string, killper = AssertCode_Processer.AssertCode([("12234"), ("214124")])
+        output_string, killper, kill_status_record = AssertCode_Processer.AssertCode([("12234"), ("214124")])
         print(output_string)
         # print(output_string, killper)
         
-        return JsonResponse({'ans1':"Testing",'ans2':"Testing"})
+        return JsonResponse({'output_string':output_string, 'killper': killper, "kill_status_record": kill_status_record})
 
     elif request.method == 'GET':
         #bangou=0代表是第一次進入網頁
@@ -112,6 +112,7 @@ def diff_1(request, bangou=0):
             
             return render(request, 'mutation_test/diff_1.html',{"error":"請回到首頁"})
 
+
 def diff_1_load(request):
     basedir = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/"
     all_shukudai = []
@@ -119,7 +120,7 @@ def diff_1_load(request):
     for i in range(1,4):
         with open(basedir + "test_{num}.py".format(num=i), "r", encoding="UTF-8") as file:
             all_shukudai.append(file.read())
-    # for i in all_shukudai:
+    # for i in all_shukudai:NNNN
         # print(i)
 
     return JsonResponse({'all_shukudai' : all_shukudai})

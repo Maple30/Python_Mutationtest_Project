@@ -6,7 +6,7 @@ def get_two_float(f_str, n):
     return ".".join([a, c])
 
 # 輸出字串處理
-def output_str_hadler(totalprograms, Killper, suvived):
+def output_str_hadler(totalprograms, Killper, suvived, kill_status_record):
     output_string = []
     output_string.append('Total programs:' + str(totalprograms))
     output_string.append('Killpercentage:' + str(Killper) + '%')
@@ -21,13 +21,13 @@ def output_str_hadler(totalprograms, Killper, suvived):
         output_string.append("")
     # print('i am output_str_hadler','')
     # print(output_string)
-    return output_string, Killper
+    return output_string, Killper, kill_status_record
 
 # 計算kill比率並回傳輸出結果
 def killpercent(beslipt_output=list(), assert_all_fun = []):
     total = len(beslipt_output)
     killed_counter = 0
-    kill_success_test_name = []
+    kill_status_record = []
     suvived = []
         # with open(i[0], 'r', encoding='UTF-8') as file:
     # print(beslipt_output)
@@ -49,8 +49,12 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
                     for IsTestFucName in one:
                         if "def" in IsTestFucName and "test" in IsTestFucName:
                             suvived[-1].append(IsTestFucName.split(" ")[-1][0:-1])
+            # 紀錄有killed掉
+            kill_status_record.append(True)
         elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
             killed_counter += 1
+            # 紀錄有killed掉
+            kill_status_record.append(True)
         else: # ("failed" not in one[-2]) and ("passed" in one[-2]) 只有passed存在
             for p,item in enumerate(one):
                 if "[100%]" in item:
@@ -60,6 +64,8 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
                     # 將所有function name放入
                     for funName in assert_all_fun:
                         suvived[-1].append(funName)
+            # 紀錄有killed失敗
+            kill_status_record.append(False)
 
     # print("bslipt_output = ")
     # print(beslipt_output)
@@ -70,4 +76,4 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
             i.append(file.read())
             i[0] = i[0].split("/")[-1]
     # print(killed_counter,total)
-    return output_str_hadler(total, get_two_float((killed_counter/total)*100,2), suvived)
+    return output_str_hadler(total, get_two_float((killed_counter/total)*100,2), suvived, kill_status_record)

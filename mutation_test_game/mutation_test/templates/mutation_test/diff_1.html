@@ -63,9 +63,9 @@
             <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
         </div> -->
         
-        <button type = "button" class="btn btn-primary btn-sm" onclick="before()">變異1</button>
-        <button type = "button" class="btn btn-secondary btn-sm" onclick="after()">變異2</button>
-        <button type = "button" class="btn btn-primary btn-sm" onclick="assert_part()">變異3</button>
+        <button type = "button" class="btn btn-primary btn-sm" onclick="one()">變異1</button>
+        <button type = "button" class="btn btn-secondary btn-sm" onclick="two()">變異2</button>
+        <button type = "button" class="btn btn-primary btn-sm" onclick="three()">變異3</button>
     </div>
     <div class="row">
         <div id="div_pre" class="col-6 border overflow_scroll wh30060">
@@ -82,28 +82,22 @@
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
         </div>
-    </div>
-    
-    <h1 class="pt1" style="">執行結果</h1>
-    <div class='row pt1'>
-        
-        <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
-    </div>
-
-    <div class="row">
-        <div class="col-6 border overflow_scroll wh30060 ">
-<pre id='output_before' style="display:none" >
-</pre>
-<pre id='output_after' style="display:none" >
-</pre>
-        </div>
         <div class = "col-3" id="timecount">
             {{timecout}}
         </div>
     </div>
+    
+    <h1 class="" style="padding-top: 20px;">執行結果</h1>
 
+    <div class="row">
+        <div id="output" class="col-6  wh30060 "> <!--class="border overflow_scroll"-->
+<!-- <pre id='output_before' style="display:none" >
+</pre>
+<pre id='output_after' style="display:none" >
+</pre> -->
+        </div>
 
+    </div>
 </div>
 
   
@@ -126,7 +120,6 @@
 
 <!-- 預先載入題目 -->
 <script>
-    
     function loadshukudai(){
         var xhttp = new XMLHttpRequest();
     
@@ -141,17 +134,16 @@
                     for(i=0 ;i<js_shukudai.all_shukudai.length ;i++){
                         var pre = document.createElement("pre")
                         if (i == 0){
-                            pre.style.cssText = "display:";    
+                            pre.style.cssText = "display:";
                         }else{
                             pre.style.cssText = "display:none";
                         }
                         
-                        pre.setAttribute("id", i.toString(10))
+                        pre.setAttribute("id", "pratice_" + i.toString(10))
                         pre.innerHTML = js_shukudai.all_shukudai[i]
-                        console.log(js_shukudai.all_shukudai[i])
+                        // console.log(js_shukudai.all_shukudai[i])
                         parent.appendChild(pre)
                     }
-
 
                     // <pre id='assert_part' style="display:none">
                 }
@@ -164,7 +156,6 @@
 
 </script>
 <!-- 預先載入題目 -->
-
 
 <!-- 送資料到後端 ajax -->
 <script>
@@ -190,12 +181,30 @@
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
                     js_ans = JSON.parse(xmlhttp.response)
-                    output_before = document.getElementById("output_before"); 
-                    output_after = document.getElementById("output_after");
-                    output_before.innerHTML = "變異前:\n" + js_ans.ans1;
-                    output_after.innerHTML = "變異後:\n" + js_ans.ans2;
-                    unmutate = document.getElementById('output_before');
-                    unmutate.style.cssText = "";
+                    console.log(js_ans.kill_status_record)
+                    document.getElementById("output").innerHTML=""
+                    parent = document.getElementById("output")
+
+                    for( i=1; i<=js_ans.kill_status_record.length; i++){
+                        // console.log(typeof(js_ans.kill_status_record[i-1]))
+
+                        if(js_ans.kill_status_record[i-1] == true){
+                            var p = document.createElement("p")
+                            p.innerHTML = "變異" + (i).toString(10) + "kill成功"
+                            parent.appendChild(p)
+                        }else{
+                            var p = document.createElement("p")
+                            p.innerHTML = "變異" + (i).toString(10) + "kill失敗"
+                            parent.appendChild(p)
+                        }
+                    }
+                    var p = document.createElement("p")
+                            p.innerHTML = "Kill率有" + js_ans.killper + "% 耶 太棒了吧"
+                            parent.appendChild(p)
+                    
+
+
+
                 }
         }
         /*抓input*/
@@ -214,7 +223,7 @@
         data.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
         data.append("Num", Num_obj);
         data.append("input", upload_pic);
-        console.log(document.getElementsByName('bangou').value)
+        // console.log(document.getElementsByName('bangou').value)
         xmlhttp.send(data);
     }
 </script>
@@ -224,28 +233,33 @@
 <!-- BUTTOM 控制 -->
 <script>
 
-function before(){
-    unmutate = document.getElementById('unmutate');
-    mutated = document.getElementById('mutated');
-    unmutate.style.cssText = "";
-    mutated.style.cssText = "display:none";
-    assert.style.cssText = "display:none";
+function one(){
+    pratice_0 = document.getElementById('pratice_0');
+    pratice_1 = document.getElementById('pratice_1');
+    pratice_2 = document.getElementById('pratice_2');
+
+    pratice_0.style.cssText = "";
+    pratice_1.style.cssText = "display:none";
+    pratice_2.style.cssText = "display:none";
 }
-function after(){
-    unmutate = document.getElementById('unmutate');
-    mutated = document.getElementById('mutated');
-    mutated.style.cssText = "";
-    unmutate.style.cssText = "display:none";
-    assert.style.cssText = "display:none";
+function two(){
+    pratice_0 = document.getElementById('pratice_0');
+    pratice_1 = document.getElementById('pratice_1');
+    pratice_2 = document.getElementById('pratice_2');
+
+    pratice_0.style.cssText = "display:none";
+    pratice_1.style.cssText = "";
+    pratice_2.style.cssText = "display:none";
 }
 
-function assert_part(){
-    assert = document.getElementById('assert_part');
-    unmutate = document.getElementById('unmutate');
-    mutated = document.getElementById('mutated');
-    assert.style.cssText = "";
-    unmutate.style.cssText = "display:none";
-    mutated.style.cssText = "display:none";
+function three(){
+    pratice_0 = document.getElementById('pratice_0');
+    pratice_1 = document.getElementById('pratice_1');
+    pratice_2 = document.getElementById('pratice_2');
+
+    pratice_0.style.cssText = "display:none";
+    pratice_1.style.cssText = "display:none";
+    pratice_2.style.cssText = "";
 }
 
 function ans_before(){
@@ -272,17 +286,18 @@ function add_ans(){
 }
 </script>
 <!-- BUTTOM 控制 -->
+
 <!-- 計時器運行 -->
 <script>
     var id = setInterval(TimeCount, 1000);
     function TimeCount(){
         time = document.getElementById("timecount")
-        console.log(time)
+        // console.log(time)
         Timearr = time.innerHTML.replace(" ","").split(":")
-        console.log(Timearr)
+        // console.log(Timearr)
         min = parseInt(Timearr[0])
         sec = parseInt(Timearr[1])
-        console.log(min,sec)
+        // console.log(min,sec)
         sec += 1
         if (sec%60 == 0){
             min += 1
@@ -301,10 +316,8 @@ function add_ans(){
             
             time.innerHTML = min.toString() + ":" + sec.toString()
         }
-        
-        
+   
     }
-
 </script>
 
 {% endblock %}

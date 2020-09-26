@@ -21,9 +21,9 @@ def run(mu_filenames):
     # for i in beslipt_output:
     #     for j in i:
     #         print(j)
-    output_string, killper = share.killpercent(beslipt_output, assert_all_fun)
+    output_string, killper, kill_status_record = share.killpercent(beslipt_output, assert_all_fun)
 
-    return output_string, killper
+    return output_string, killper, kill_status_record
 
 # assertcode產生
 def AssertCode(input):
