@@ -90,14 +90,20 @@
     <h1 class="" style="padding-top: 20px;">執行結果</h1>
 
     <div class="row">
-        <div id="output" class="col-6  wh30060 "> <!--class="border overflow_scroll"-->
-<!-- <pre id='output_before' style="display:none" >
-</pre>
-<pre id='output_after' style="display:none" >
-</pre> -->
+        <div  class="col-6">
+            <div class="graph">
+                <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
+                </div>
+                <p class='text-center relative2'>kill rate</p>
+                <p id='myP' class='text-center relative2' ></p>
+                <p id='myp2' class='text-center relative2' ></p>
         </div>
-
     </div>
+    <div class="row">
+        <div id="output" class="col-6 ">
+        </div>
+    </div>
+
 </div>
 
   
@@ -182,19 +188,17 @@
                 {
                     js_ans = JSON.parse(xmlhttp.response)
                     console.log(js_ans.kill_status_record)
-                    list = document.getElementById("output")
-                    len = list.childNodes.length
+                    parent = document.getElementById("output")
+                    len = parent.childNodes.length
                     for(i=0;i<len;i++){
-                        list.removeChild(list.childNodes[0]);
+                        parent.removeChild(parent.childNodes[0]);
                     }
                     
 
-                    parent = document.getElementById("output")
-                    
                     if (js_ans.no_input != undefined){
                         var p = document.createElement("p")
                         p.innerHTML = js_ans.no_input
-                        parent.appendChild(p)                        
+                        parent.appendChild(p)
                     }
                     
                     for(i=1; i<=js_ans.kill_status_record.length; i++){
@@ -202,38 +206,38 @@
 
                         if(js_ans.kill_status_record[i-1] == true){
                             var p = document.createElement("p")
-                            // 先把組出要輸出的字串
-                            string = "變異" + (i).toString(10) + "kill成功"
-
-                            const dom = document.getElementById('output')
-                            const data = string.split('')
-                            console.log(data)
-                            let index=0
-                            writing(index)
-                            function writing(index) {
-                                if (index < data.length) {
-                                    p.innerHTML += data[index]
-                                    parent.appendChild(p)
-                                    setTimeout(writing.bind(this), 200, ++index)
-                                }
-                            }
-
-                            // for(j=0; j<string.length; j++){
-
-                            // }
+                            p.innerHTML = "變異" + (i).toString(10) + "kill成功"
+                            parent.appendChild(p)
+                            
                         }else{
                             var p = document.createElement("p")
                             p.innerHTML = "變異" + (i).toString(10) + "kill失敗"
                             parent.appendChild(p)
                         }
                     }
+
+                    var elem1 = document.getElementById("myBar");
+                    var elem2 = document.getElementById("myP");
+                    var width = 1;
+                    var id = setInterval(frame, 20);
+                    var elemp2 = document.getElementById('myp2')
+                    elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
+                    function frame() {
+                        if (width >= parseFloat(js_ans.killper)) {
+                            elem1.style.width = parseFloat(js_ans.killper) + '%';
+                            elem2.innerHTML = parseFloat(js_ans.killper) + '%';
+                            clearInterval(id);
+                        } else {
+                            width++;
+                            elem1.style.width = width + '%';
+                            elem2.innerHTML = width + '%';
+                        }
+                    }
+
                     var p = document.createElement("p")
                             p.innerHTML = "Kill率有" + js_ans.killper + "% 耶 太棒了吧"
                             parent.appendChild(p)
                     
-
-
-
                 }
         }
         /*抓input*/
