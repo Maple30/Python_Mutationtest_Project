@@ -60,7 +60,9 @@ def diff_1(request, bangou=0):
                 print("有非數字的輸入")
                 continue
         print(num_ar)
-        
+        if num_ar == []:
+            return JsonResponse({"no_input": "請輸入測試資料"})
+
         output_string, killper, kill_status_record = AssertCode_Processer.AssertCode([("12234"), ("214124")])
         print(output_string)
         # print(output_string, killper)

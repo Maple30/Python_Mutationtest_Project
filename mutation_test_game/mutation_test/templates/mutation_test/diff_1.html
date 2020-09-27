@@ -182,16 +182,45 @@
                 {
                     js_ans = JSON.parse(xmlhttp.response)
                     console.log(js_ans.kill_status_record)
-                    document.getElementById("output").innerHTML=""
-                    parent = document.getElementById("output")
+                    list = document.getElementById("output")
+                    len = list.childNodes.length
+                    for(i=0;i<len;i++){
+                        list.removeChild(list.childNodes[0]);
+                    }
+                    
 
-                    for( i=1; i<=js_ans.kill_status_record.length; i++){
+                    parent = document.getElementById("output")
+                    
+                    if (js_ans.no_input != undefined){
+                        var p = document.createElement("p")
+                        p.innerHTML = js_ans.no_input
+                        parent.appendChild(p)                        
+                    }
+                    
+                    for(i=1; i<=js_ans.kill_status_record.length; i++){
                         // console.log(typeof(js_ans.kill_status_record[i-1]))
 
                         if(js_ans.kill_status_record[i-1] == true){
                             var p = document.createElement("p")
-                            p.innerHTML = "變異" + (i).toString(10) + "kill成功"
-                            parent.appendChild(p)
+                            // 先把組出要輸出的字串
+                            string = "變異" + (i).toString(10) + "kill成功"
+
+                            const dom = document.getElementById('output')
+                            const data = string.split('')
+                            console.log(data)
+                            let index=0
+                            writing(index)
+                            function writing(index) {
+                                if (index < data.length) {
+                                    p.innerHTML += data[index]
+                                    parent.appendChild(p)
+                                    setTimeout(writing.bind(this), 200, ++index)
+                                }
+                            }
+
+                            // for(j=0; j<string.length; j++){
+
+                            // }
                         }else{
                             var p = document.createElement("p")
                             p.innerHTML = "變異" + (i).toString(10) + "kill失敗"
