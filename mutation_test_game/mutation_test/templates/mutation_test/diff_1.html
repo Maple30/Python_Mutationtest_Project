@@ -2,25 +2,84 @@
 
 {% block head %}
 <style>
-    .relative1 {
-    position: relative;
-    }
-    .relative2 {
-    position: relative;
-    top: -30px;
-    left: 10px;
-    width: 500px;
-    background-color: rgba(255,255,255,0);
-    }
 
-    .overflow_scroll{   
-        overflow:scroll;
-    }
+/* GRID */
 
-    .wh30060{
-        width:400px;
-        height:300px;
-    }
+.twelve { width: 100%; }
+.eleven { width: 91.53%; }
+.ten { width: 83.06%; }
+.nine { width: 74.6%; }
+.eight { width: 66.13%; }
+.seven { width: 57.66%; }
+.six { width: 49.2%; }
+.five { width: 40.73%; }
+.four { width: 32.26%; }
+.three { width: 23.8%; }
+.two { width: 15.33%; }
+.one { width: 6.866%; }
+
+/* COLUMNS */
+
+/* CLEARFIX */
+
+.three{
+/* background-color: #eee; */
+padding: 50px 0;
+}
+
+/* ALL LOADERS */
+
+.loader{
+width: 100px;
+height: 100px;
+bottom: 250px;
+right: 600px;
+border-radius: 100%;
+position: fixed;
+margin: 0 auto;
+}
+
+/* LOADER 1 */
+
+#loader-1:before, #loader-1:after{
+content: "";
+position: absolute;
+top: -10px;
+left: -10px;
+width: 100%;
+height: 100%;
+border-radius: 100%;
+border: 10px solid transparent;
+border-top-color: #3498db;
+}
+
+#loader-1:before{
+z-index: 100;
+animation: spin 1s infinite;
+}
+
+#loader-1:after{
+border: 10px solid #ccc;
+}
+
+@keyframes spin{
+0%{
+-webkit-transform: rotate(0deg);
+-ms-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+
+100%{
+-webkit-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+
+
+
     
 </style>
 
@@ -102,13 +161,15 @@
     <div class="row">
         <div id="output" class="col-6 ">
         </div>
+
+
     </div>
 
 </div>
-
-  
-
-
+<div class="three col" >
+    <div class="loader" id="loader-1" style="display:none"></div>
+    <!-- none -->
+</div>
 <!-- 預先載入的物件 -->
 <script>
     var parent = document.getElementById("div_ans")
@@ -167,6 +228,7 @@
 <script>
     function loadXMLDoc()
     {
+        document.getElementById("loader-1").setAttribute("style","display:")
         var xmlhttp;
 
         if (document.getElementsByName("Num").value == '')
@@ -186,14 +248,14 @@
         {
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
+                    document.getElementById("loader-1").setAttribute("style","display:none")
                     js_ans = JSON.parse(xmlhttp.response)
-                    console.log(js_ans.kill_status_record)
+                    // console.log(js_ans.kill_status_record)
                     parent = document.getElementById("output")
                     len = parent.childNodes.length
                     for(i=0;i<len;i++){
                         parent.removeChild(parent.childNodes[0]);
                     }
-                    
 
                     if (js_ans.no_input != undefined){
                         var p = document.createElement("p")
@@ -201,27 +263,74 @@
                         parent.appendChild(p)
                     }
                     
+                    const output_string = []
                     for(i=1; i<=js_ans.kill_status_record.length; i++){
-                        // console.log(typeof(js_ans.kill_status_record[i-1]))
-
+                    
                         if(js_ans.kill_status_record[i-1] == true){
-                            var p = document.createElement("p")
-                            p.innerHTML = "變異" + (i).toString(10) + "kill成功"
-                            parent.appendChild(p)
-                            
+                            output_string.push(("變異" + (i).toString(10) + " kill成功"))
                         }else{
-                            var p = document.createElement("p")
-                            p.innerHTML = "變異" + (i).toString(10) + "kill失敗"
-                            parent.appendChild(p)
+                            output_string.push(("變異" + (i).toString(10) + " kill失敗"))
                         }
                     }
+                    // console.log(output_string[0][0])
+                    
+
+                    output_string_now_p = 0
+                    print_word_now_p = 0
+                    // console.log(output_string)
+
+                    function write(output_string_now_p, print_word_now_p){
+                        if(output_string[output_string_now_p] == undefined){
+                            console.log("end")
+                        }else{
+                            if(output_string[output_string_now_p][print_word_now_p] == undefined){
+                                output_string_now_p += 1
+                                print_word_now_p = 0
+                                setTimeout(write.bind(this), 200, output_string_now_p,print_word_now_p)
+                            }else{
+                                if(print_word_now_p == 0){
+                                    var p = document.createElement('p')
+                                    p.setAttribute('id','output'+output_string_now_p.toString(10))
+                                    parent.appendChild(p)
+                                    var p = document.getElementById('output'+output_string_now_p.toString(10))
+                                    p.innerHTML += output_string[output_string_now_p][print_word_now_p]
+                                    console.log(output_string[output_string_now_p][print_word_now_p])
+                                    print_word_now_p += 1
+                                    setTimeout(write.bind(this), 150, output_string_now_p,print_word_now_p)
+                                }else{
+                                    var p = document.getElementById('output'+output_string_now_p.toString(10))
+                                    p.innerHTML += output_string[output_string_now_p][print_word_now_p]
+                                    print_word_now_p += 1
+                                    // console.log( "2"+output_string[output_string_now_p][print_word_now_p])
+                                    setTimeout(write.bind(this), 150, output_string_now_p,print_word_now_p)
+                                }
+                            }
+                        }
+                    }
+                    write(output_string_now_p, print_word_now_p)
+
+                    // 先註解 做不出來就用這個版本的
+                    // for(i=1; i<=js_ans.kill_status_record.length; i++){
+                    //     // console.log(typeof(js_ans.kill_status_record[i-1]))
+
+                    //     if(js_ans.kill_status_record[i-1] == true){
+                    //         var p = document.createElement("p")
+                    //         p.innerHTML = "變異" + (i).toString(10) + "kill成功"
+                    //         parent.appendChild(p)
+                            
+                    //     }else{
+                    //         var p = document.createElement("p")
+                    //         p.innerHTML = "變異" + (i).toString(10) + "kill失敗"
+                    //         parent.appendChild(p)
+                    //     }
+                    // }
 
                     var elem1 = document.getElementById("myBar");
                     var elem2 = document.getElementById("myP");
                     var width = 1;
-                    var id = setInterval(frame, 20);
+                    var id = setInterval(frame, 52);
                     var elemp2 = document.getElementById('myp2')
-                    elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
+                    // elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
                     function frame() {
                         if (width >= parseFloat(js_ans.killper)) {
                             elem1.style.width = parseFloat(js_ans.killper) + '%';
@@ -234,12 +343,14 @@
                         }
                     }
 
-                    var p = document.createElement("p")
-                            p.innerHTML = "Kill率有" + js_ans.killper + "% 耶 太棒了吧"
-                            parent.appendChild(p)
+                    // var p = document.createElement("p")
+                    //         p.innerHTML = "Kill率有" + js_ans.killper + "% 耶 太棒了吧"
+                    //         parent.appendChild(p)
+                    
                     
                 }
         }
+
         /*抓input*/
         var upload_pic = new Array()
         var len = document.querySelectorAll(".user").length
