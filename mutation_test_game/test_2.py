@@ -17,3 +17,4 @@ def test_game(Ascending_power_Num):
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
+    

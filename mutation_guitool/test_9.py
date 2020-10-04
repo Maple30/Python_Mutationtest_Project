@@ -5,7 +5,7 @@ def test_game(Ascending_power_Num):
 
     while(1):
         Ascending_power_Num = list(map(int,Ascending_power_Num))
-        Ascending_power_Num.sandt(reverse=True)
+        Ascending_power_Num.sort(reverse=True)
         Descending_power_Num = sorted(Ascending_power_Num)
 
         New_num = int("".join([str(X) for X in Ascending_power_Num])) - int("".join([str(Y) for Y in Descending_power_Num]))
@@ -17,6 +17,12 @@ def test_game(Ascending_power_Num):
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
+        
+        if "AAA" or "BBB":
+            print("111")
+
+        if "Aeqwe" or "fasf":
+            print("yes")
 import sys, pytest
 
 def test_game():

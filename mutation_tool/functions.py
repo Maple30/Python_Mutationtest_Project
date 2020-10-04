@@ -5,6 +5,57 @@ def get_two_float(f_str, n):
     c = (c+"0"*n)[:n]       # 補0
     return ".".join([a, c])
 
+# find out which symbol need to be replaced for and or
+def get_index_for_or(trash_test_word=None, item=''):
+    all_index = []
+    index_lenth_list = []
+    A = trash_test_word.split("\n")
+    Now_position = 0
+    flag = 0
+    
+    for cut,i in enumerate(A):
+        if len(A)-1 == cut:
+            index_lenth_list.append(len(i))
+        index_lenth_list.append(len(i) + 1)
+        
+        # print(len(i))
+    
+    for i,ele in enumerate(A):
+        if item in ele:
+            if "print" in ele.split("(")[0]:
+                Now_position += index_lenth_list[i]
+                continue
+        for value in ele:
+            if ele.find(item, flag) != -1:
+                if item == "or":
+                    if ele[ele.find(item,flag)-1] != " " or ele[ele.find(item,flag)+2] != " ":
+                        continue
+                    else:
+                        print("我進到了是or的地方")
+                        all_index.append(Now_position + ele.find(item,flag))
+                        flag =  ele.find(item,flag) + 1
+                        
+                elif item == "and":
+                    if ele[ele.find(item,flag)-1] != " " or ele[ele.find(item,flag)+3] != " ":
+                        # print("我進到了不是and的地方")
+                        continue
+                    else:
+                        # print(Now_position, len(trash_test_word))
+                        print("我進到了是and的地方")
+                        
+                        all_index.append(Now_position + ele.find(item,flag))
+                        # print(Now_position, ele.find(item,flag))
+                        # print(all_index)
+                        
+                        flag =  ele.find(item,flag) + 1
+            else:
+                break
+        Now_position += index_lenth_list[i]
+    # print(len(index_lenth_list))
+    print(all_index)
+
+    return all_index
+
 # find out which symbol need to be replaced
 def get_index(string=None, item=''):
     flag = 0
@@ -68,7 +119,7 @@ def logic_symbols_check(origin=""):
     mutations = []
     for i,symbol in enumerate(logic_symbols): #檢查邏輯符號
         if symbol in origin:
-            all_willberp_index = get_index(origin, symbol) #獲取相符的所有索引
+            all_willberp_index = get_index_for_or(origin, symbol) #獲取相符的所有索引
             del lo_rs_symbols[i] #把不必變異的符號刪除
             for index in all_willberp_index:
                 if symbol == "and":

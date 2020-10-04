@@ -17,6 +17,12 @@ def test_game(Ascending_power_Num):
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
+        
+        if "AAA" and "BBB":
+            print("111")
+
+        if "Aeqwe" or "fasf":
+            print("yes")
 import sys, pytest
 
 def test_game():
