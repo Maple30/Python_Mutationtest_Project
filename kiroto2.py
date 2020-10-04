@@ -19,7 +19,7 @@ headers= {
         
 data = {
         # action : hunt2, train2, eat2, girl2, good2, sit2, fish2
-        'action':'girl2',
+        'action':'train2',
         }
 # u is yours
 url = 'https://mykirito.com/api/my-kirito/doaction?u=5f748e420ed95f13e37cf4da'
