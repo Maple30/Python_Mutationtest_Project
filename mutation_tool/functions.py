@@ -176,17 +176,18 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
     suvived = []
         # with open(i[0], 'r', encoding='UTF-8') as file:
     # print(beslipt_output)
+    
     for one in beslipt_output:
-        if "passed" in one[-2] and "failed" in one[-2]: #字串存在"passed"和"failed"
+        if "passed" in one[-2] and "failed" in one[-2]: 
             for p,item in enumerate(one):
                 if "short test summary info" in item:
                     killedfunc = []
                     suvived.append([one[p+1].split("::")[0].split(" ")[1]])
-                    # 是Testclass的情況
+                    
                     if "Testclass" in one[p+1]:
                         for killedstest in one[p+1:-2]:
                             killedfunc.append(killedstest.split("::")[2].split(" ")[0])
-                    # 非Testclass的情況
+                    
                     else:
                         for killedstest in one[p+1:-2]:
                             killedfunc.append(killedstest.split("::")[1].split(" ")[0])
@@ -194,9 +195,9 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
                     for IsTestFucName in one:
                         if "def" in IsTestFucName and "test" in IsTestFucName:
                             suvived[-1].append(IsTestFucName.split(" ")[-1][0:-1])
-        elif ("failed" in one[-2]) and ("passed" not in one[-2]): #字串只存在"failed"而不存在"passed"
+        elif ("failed" in one[-2]) and ("passed" not in one[-2]): 
             killed_counter += 1
-        else: # ("failed" not in one[-2]) and ("passed" in one[-2]) 只有passed存在
+        else: # ("failed" notS in one[-2]) and ("passed" in one[-2]) 只有passed存在
             for p,item in enumerate(one):
                 if "[100%]" in item:
                     suvived.append([item.split()[0]])
