@@ -1,12 +1,24 @@
-def game(X, Y):
-    if X >= 10 and Y==1:
-        X=1
-        return X
-    elif (X-Y) < 2:
-        X = 2
-        return X
-    if Y > 10:
-        X = 3 
-    return X
+if A < B:
+    print("成功")
+else:
+    print("失敗")
 
-print(game(3,10), game(10,0), game(10,1))
+if A <= B:
+    print("成功")
+else:
+    print("失敗")
+
+if A >= B:
+    print("成功")
+else:
+    print("失敗")
+
+if A == B:
+    print("成功")
+else:
+    print("失敗")
+
+if A != B:
+    print("成功")
+else:
+    print("失敗")

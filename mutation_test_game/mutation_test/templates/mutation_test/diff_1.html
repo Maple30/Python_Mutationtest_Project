@@ -121,14 +121,16 @@ transform: rotate(360deg);
             <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
             <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
         </div> -->
-        
+        <button type = "button" class="btn btn-primary btn-sm" onclick="no_mutate()">變異前</button>
         <button type = "button" class="btn btn-primary btn-sm" onclick="one()">變異1</button>
         <button type = "button" class="btn btn-secondary btn-sm" onclick="two()">變異2</button>
         <button type = "button" class="btn btn-primary btn-sm" onclick="three()">變異3</button>
     </div>
     <div class="row">
         <div id="div_pre" class="col-6 border overflow_scroll wh30060">
-
+<pre id='no_mutate' style="">
+zzz
+</pre>
         </div>
 
         <div id="div_ans" class="col-3">
@@ -141,9 +143,7 @@ transform: rotate(360deg);
             <br>
             <button type='button' class='border-light rounded' onclick="loadXMLDoc()">Test</button>
         </div>
-        <div class = "col-3" id="timecount">
-            {{timecout}}
-        </div>
+
     </div>
     
     <h1 class="" style="padding-top: 20px;">執行結果</h1>
@@ -273,7 +273,7 @@ transform: rotate(360deg);
                         }
                     }
                     // console.log(output_string[0][0])
-                    
+
 
                     output_string_now_p = 0
                     print_word_now_p = 0
@@ -377,30 +377,48 @@ transform: rotate(360deg);
 <!-- BUTTOM 控制 -->
 <script>
 
-function one(){
+function no_mutate(){
+    no = document.getElementById('no_mutate')
     pratice_0 = document.getElementById('pratice_0');
     pratice_1 = document.getElementById('pratice_1');
     pratice_2 = document.getElementById('pratice_2');
 
+    no.style.cssText = "";
+    pratice_0.style.cssText = "display:none";
+    pratice_1.style.cssText = "display:none";
+    pratice_2.style.cssText = "display:none";    
+}
+
+function one(){
+    no = document.getElementById('no_mutate')
+    pratice_0 = document.getElementById('pratice_0');
+    pratice_1 = document.getElementById('pratice_1');
+    pratice_2 = document.getElementById('pratice_2');
+
+    no.style.cssText = "display:none";
     pratice_0.style.cssText = "";
     pratice_1.style.cssText = "display:none";
     pratice_2.style.cssText = "display:none";
 }
 function two(){
+    no = document.getElementById('no_mutate')
     pratice_0 = document.getElementById('pratice_0');
     pratice_1 = document.getElementById('pratice_1');
     pratice_2 = document.getElementById('pratice_2');
 
+    no.style.cssText = "display:none";
     pratice_0.style.cssText = "display:none";
     pratice_1.style.cssText = "";
     pratice_2.style.cssText = "display:none";
 }
 
 function three(){
+    no = document.getElementById('no_mutate')
     pratice_0 = document.getElementById('pratice_0');
     pratice_1 = document.getElementById('pratice_1');
     pratice_2 = document.getElementById('pratice_2');
 
+    no.style.cssText = "display:none";
     pratice_0.style.cssText = "display:none";
     pratice_1.style.cssText = "display:none";
     pratice_2.style.cssText = "";
@@ -464,4 +482,7 @@ function add_ans(){
     }
 </script>
 
+        <!-- <div class = "col-3" id="timecount">
+            {{timecout}}
+        </div> -->
 {% endblock %}

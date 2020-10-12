@@ -1,4 +1,4 @@
-def test_game(Ascending_power_Num):
+def game(Ascending_power_Num):
     Descending_power_Num = 0
     Appeared_Num = []
     New_num = 0

@@ -1,5 +1,7 @@
 import sys, pytest
 
 def test_game():
-    assert game("12234")==9
-    assert game("214124")==17
+    assert game("216")==198
+    assert game("121")==0
+    assert game("2005")==1979
+    assert game("1") == 0

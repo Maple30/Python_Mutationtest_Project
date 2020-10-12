@@ -1,30 +1,20 @@
-def test_game(Ascending_power_Num):
-    Descending_power_Num = 0
-    Appeared_Num = []
-    New_num = 0
-
-    while(1):
-        Ascending_power_Num = list(map(int,Ascending_power_Num))
-        Ascending_power_Num.sort(reverse=True)
-        Descending_power_Num = sorted(Ascending_power_Num)
-
-        New_num = int("".join([str(X) for X in Ascending_power_Num])) - int("".join([str(Y) for Y in Descending_power_Num]))
-        New_num = str(New_num)
-        Ascending_power_Num = New_num
-
-        if New_num in Appeared_Num:
-            return len(Appeared_Num) % 1
-        else:
-            Appeared_Num.append(New_num)
-            Ascending_power_Num = New_num
+def game(Num):
+    Num = int(Num)
+    for i in range(1,Num+1):
+        digit_sum = 0
         
-        if "AAA" and "BBB":
-            print("111")
+        Num_string = str(i)
+        for j in range(len(Num_string)):
+            digit_sum = digit_sum + int(Num_string[j])
+        digit_sum = digit_sum + i
 
-        if "Aeqwe" or "fasf":
-            print("yes")
+        if digit_sum <= Num:
+            return i
+    return 0
 import sys, pytest
 
 def test_game():
-    assert game("12234")==9
-    assert game("214124")==17
+    assert game("216")==198
+    assert game("121")==0
+    assert game("2005")==1979
+    assert game("1") == 0

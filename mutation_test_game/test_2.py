@@ -1,4 +1,4 @@
-def test_game(Ascending_power_Num):
+def game(Ascending_power_Num):
     Descending_power_Num = 0
     Appeared_Num = []
     New_num = 0
@@ -17,4 +17,3 @@ def test_game(Ascending_power_Num):
         else:
             Appeared_Num.append(New_num)
             Ascending_power_Num = New_num
-    

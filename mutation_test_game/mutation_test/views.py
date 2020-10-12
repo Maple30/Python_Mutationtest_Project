@@ -48,7 +48,7 @@ def diff_1(request, bangou=0):
     if request.method == 'POST':
         # print(request.POST['input'])
         #分割字串
-        print(request.POST)
+        # print(request.POST)
         a = request.POST['input'].split(',')
         # print(a)
         num_ar = []
@@ -59,12 +59,12 @@ def diff_1(request, bangou=0):
             except:
                 print("有非數字的輸入")
                 continue
-        print(num_ar)
+        # print(num_ar)
         if num_ar == []:
             return JsonResponse({"no_input": "請輸入測試資料"})
 
         output_string, killper, kill_status_record = AssertCode_Processer.AssertCode([("12234"), ("214124")])
-        print(output_string)
+        # print(output_string)
         # print(output_string, killper)
         
         return JsonResponse({'output_string':output_string, 'killper': killper, "kill_status_record": kill_status_record})

@@ -6,9 +6,9 @@ def game(Num):
         Num_string = str(i)
         for j in range(len(Num_string)):
             digit_sum = digit_sum + int(Num_string[j])
-        digit_sum = digit_sum + i
+        digit_sum = digit_sum * i
 
-        if digit_sum >= Num:
+        if digit_sum == Num:
             return i
     return 0
 import sys, pytest

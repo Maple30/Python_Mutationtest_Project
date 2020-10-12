@@ -1,13 +1,13 @@
 import sys
 import subprocess
-from NetGame import test_game
+from NetGame import game
 sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai")
 import share
 
 #def 執行測試並回傳結果
 def run(mu_filenames):
     print(mu_filenames)
-    assert_all_fun = ["test_game(Ascending_power_Num)"]
+    assert_all_fun = ["game(Ascending_power_Num)"]
     output = []
     for mus in mu_filenames: #執行shell
         cmd = "pytest " + "shukudai/diff_1/" + mus #要有空格==> pytest mus
@@ -18,22 +18,20 @@ def run(mu_filenames):
     beslipt_output = []
     for item in output:
         beslipt_output.append(item.split('\n'))
-    # for i in beslipt_output:
-    #     for j in i:
-    #         print(j)
+    for i in beslipt_output:
+        for j in i:
+            print(j)
     output_string, killper, kill_status_record = share.killpercent(beslipt_output, assert_all_fun)
 
     return output_string, killper, kill_status_record
 
 # assertcode產生
 def AssertCode(input):
-    # print(sys.path)
     As_Ans_Ar = []
-    # 先找出所有未變異前的答案
+
     for i in range(len(input)):
-        As_Ans_Ar.append(test_game(input[i]))
+        As_Ans_Ar.append(game(input[i]))
     
-    # 產生assertcode
     As_string = "def test_game():\n    "
     for i,ele in enumerate(As_Ans_Ar):
         As_string += "assert game(\"{input1}\")=={ans}\n    ".format(
