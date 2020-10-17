@@ -112,7 +112,7 @@ transform: rotate(360deg);
         </div>
 
         <div class="col-6">
-            <h1 class="" style="margin-top:20px;">Ans</h1>
+            <h1 class="" style="margin-top:20px;">Test data</h1>
         </div>
     </div>
 
@@ -121,7 +121,7 @@ transform: rotate(360deg);
             <button type="button" class="btn btn-primary btn-sm" onclick='ans_before()'>變異前</button>
             <button type="button" class="btn btn-secondary btn-sm" onclick='ans_after()'>變異後 </button>
         </div> -->
-        <button type = "button" class="btn btn-primary btn-sm" onclick="no_mutate()">變異前</button>
+        <button type = "button" class="btn btn-secondary btn-sm" onclick="no_mutate()">變異前</button>
         <button type = "button" class="btn btn-primary btn-sm" onclick="one()">變異1</button>
         <button type = "button" class="btn btn-secondary btn-sm" onclick="two()">變異2</button>
         <button type = "button" class="btn btn-primary btn-sm" onclick="three()">變異3</button>
@@ -137,7 +137,7 @@ zzz
         </div>
         <div class="col-3">
             {% csrf_token %}
-            <button type='button' class='border-light rounded' onclick="add_ans()">Add Ans</button>
+            <button type='button' class='border-light rounded' onclick="add_ans()">Add column</button>
             <input type="hidden" name="page" value="diff_1">
             <input type="hidden" name="bangou" value="{{bangou}}">
             <br>
@@ -154,8 +154,8 @@ zzz
                 <strong id="myBar" class="bar relative1" style="width:0%;"></strong>
                 </div>
                 <p class='text-center relative2'>kill rate</p>
-                <p id='myP' class='text-center relative2' ></p>
-                <p id='myp2' class='text-center relative2' ></p>
+                <p id='myP' class='text-center relative2'></p>
+                <p id='myp2' class='text-center relative2'></p>
         </div>
     </div>
     <div class="row">
@@ -173,7 +173,7 @@ zzz
 <!-- 預先載入的物件 -->
 <script>
     var parent = document.getElementById("div_ans")
-    for(i=0; i < 6; i++){
+    for(i=0; i < 1; i++){
         var input = document.createElement("input")
         input.setAttribute("class", "user rounded")
         input.setAttribute("name", "user")
@@ -200,11 +200,7 @@ zzz
                     var parent = document.getElementById("div_pre")
                     for(i=0 ;i<js_shukudai.all_shukudai.length ;i++){
                         var pre = document.createElement("pre")
-                        if (i == 0){
-                            pre.style.cssText = "display:";
-                        }else{
-                            pre.style.cssText = "display:none";
-                        }
+                        pre.style.cssText = "display:none";
                         
                         pre.setAttribute("id", "pratice_" + i.toString(10))
                         pre.innerHTML = js_shukudai.all_shukudai[i]
@@ -424,18 +420,6 @@ function three(){
     pratice_2.style.cssText = "";
 }
 
-function ans_before(){
-    unmutate = document.getElementById('output_before');
-    mutated = document.getElementById('output_after');
-    unmutate.style.cssText = "";
-    mutated.style.cssText = "display:none";
-}
-function ans_after(){
-    unmutate = document.getElementById('output_before');
-    mutated = document.getElementById('output_after');
-    unmutate.style.cssText = "display:none";
-    mutated.style.cssText = "";
-}
 function add_ans(){
     var parent = document.getElementById("div_ans")
     var input = document.createElement("input")
@@ -481,7 +465,6 @@ function add_ans(){
    
     }
 </script>
-
         <!-- <div class = "col-3" id="timecount">
             {{timecout}}
         </div> -->

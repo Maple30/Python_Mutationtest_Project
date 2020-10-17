@@ -1,17 +1,36 @@
-def odd(the_line_have_how_many_num):
-    flag = 0
-    i = 2
-    while(1):
-        flag = flag + 2*i-1
-        if 2*i-1 == the_line_have_how_many_num:
-            break
-        i = i + 1
-    the_last_num = 2*flag + 1
-    print(the_last_num*3 - 6)
+def game(Num):
+    Num = int(Num)
+    for i in range(1,Num+1):
+        digit_sum = 0
+        
+        Num_string = str(i)
+        for j in range(len(Num_string)):
+            digit_sum = digit_sum + int(Num_string[j])
+        digit_sum = digit_sum + i
 
-odd(3)
-odd(5)
-odd(7)
-odd(17)
-odd(33)
-odd(99)
+        if digit_sum == Num:
+            return i
+    return i
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================
+        grade_b = (grade_h + 30) / 2
+
+    if grade_b == grade_h:
+        return "grade_b is equal to grade_h"
+    elif grade_b > grade_h:
+        return "grade_b"
+    else:
+        return "grade_h"
