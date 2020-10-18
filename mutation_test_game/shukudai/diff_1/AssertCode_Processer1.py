@@ -7,7 +7,7 @@ import share
 #def 執行測試並回傳結果
 def run(mu_filenames):
     print(mu_filenames)
-    assert_all_fun = ["game(Ascending_power_Num)"]
+    assert_all_fun = ["game(x)"]
     output = []
     for mus in mu_filenames: #執行shell
         cmd = "pytest " + "shukudai/diff_1/" + mus #要有空格==> pytest mus
@@ -18,9 +18,9 @@ def run(mu_filenames):
     beslipt_output = []
     for item in output:
         beslipt_output.append(item.split('\n'))
-    for i in beslipt_output:
-        for j in i:
-            print(j)
+    # for i in beslipt_output:
+    #     for j in i:
+    #         print(j)
     output_string, killper, kill_status_record = share.killpercent(beslipt_output, assert_all_fun)
 
     return output_string, killper, kill_status_record
@@ -28,13 +28,13 @@ def run(mu_filenames):
 # assertcode產生
 def AssertCode(input):
     As_Ans_Ar = []
-
+    print(input)
     for i in range(len(input)):
         As_Ans_Ar.append(game(input[i]))
     
     As_string = "def test_game():\n    "
     for i,ele in enumerate(As_Ans_Ar):
-        As_string += "assert game(\"{input1}\")=={ans}\n    ".format(
+        As_string += "assert game({input1})=={ans}\n    ".format(
             input1 = str(input[i]),
             ans = ele
         )

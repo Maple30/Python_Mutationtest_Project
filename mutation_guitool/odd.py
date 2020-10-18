@@ -12,19 +12,6 @@ def game(Num):
             return i
     return i
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 =====================================
         grade_b = (grade_h + 30) / 2
 
