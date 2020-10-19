@@ -32,7 +32,7 @@ def AssertCode(input):
     for i in range(len(input)):
         As_Ans_Ar.append(game(input[i]))
     
-    As_string = "def test_game():\n    "
+    As_string = "\ndef test_game():\n    "
     for i,ele in enumerate(As_Ans_Ar):
         As_string += "assert game({input1})=={ans}\n    ".format(
             input1 = str(input[i]),

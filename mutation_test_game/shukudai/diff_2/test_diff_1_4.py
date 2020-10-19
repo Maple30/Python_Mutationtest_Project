@@ -2,7 +2,7 @@ def game(x):
     p=0
     if x > 10:
         return 1
-    elif (x+1) > 8:
+    elif (x-1) >= 8:
         return 2
     elif (x+20) < 35:
         return 3
@@ -12,6 +12,8 @@ def game(x):
         return 5
     
     return p
+
+
 def test_game():
-    assert game(11)==1
+    assert game(10)==2
     
