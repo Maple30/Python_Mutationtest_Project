@@ -18,9 +18,9 @@ def run(mu_filenames):
     beslipt_output = []
     for item in output:
         beslipt_output.append(item.split('\n'))
-    for i in beslipt_output:
-        for j in i:
-            print(j)
+    # for i in beslipt_output:
+    #     for j in i:
+    #         print(j)
     output_string, killper, kill_status_record = share.killpercent(beslipt_output, assert_all_fun)
 
     return output_string, killper, kill_status_record
