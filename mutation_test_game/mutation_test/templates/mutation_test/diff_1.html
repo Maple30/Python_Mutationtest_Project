@@ -131,22 +131,21 @@ transform: rotate(360deg);
 <pre id='no_mutate' style="">
 def game(x):
     p=0
-    if x > 10:
+    if x > 50:
         return 1
-    elif (x-1) > 8:
+    if x > 10:
         return 2
-    elif (x+3) &lt; 0:
+    elif (x-1) > 8:
         return 3
-    elif (x-40) &lt; -10:
+    elif (x+3) &lt; 0:
         return 4
-    elif x &lt; -20:
-        return 5
-    
+
     return p
+
 </pre>
         </div>
 
-        <div id="div_ans" class="col-3">
+        <div id="div_ans" class="col-1">
         </div>
         <div class="col-3">
             {% csrf_token %}
@@ -191,7 +190,7 @@ def game(x):
         input.setAttribute("class", "user rounded")
         input.setAttribute("name", "user")
         input.setAttribute("Placeholder", "Num")
-        input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
+        input.style.cssText = "width:100%;margin-left:1px;margin-top:1px";
         parent.appendChild(input)
     }
 
@@ -440,7 +439,7 @@ function add_ans(){
     // input.setAttribute("id", "Num")
     input.setAttribute("name", "user")
     input.setAttribute("Placeholder", "Num")
-    input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
+    input.style.cssText = "width:100%;margin-left:1px;margin-top:1px";
     parent.appendChild(input)
 }
 </script>

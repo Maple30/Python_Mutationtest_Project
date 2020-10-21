@@ -137,22 +137,20 @@ transform: rotate(360deg);
 <pre id='no_mutate' style="">
 def game(x):
     p=0
-    if x > 10:
+    if x > 50:
         return 1
-    elif (x-1) > 8:
+    if x > 10:
         return 2
-    elif (x+3) &lt; 0:
+    elif (x-1) > 8:
         return 3
-    elif (x-5) &lt; -10:
+    elif (x+3) &lt; 0:
         return 4
-    elif x &lt; -20:
-        return 5
-    
+
     return p
+
 </pre>
         </div>
-
-        <div id="div_ans" class="col-3">
+        <div id="div_ans" class="col-1">
         </div>
         <div class="col-3">
             {% csrf_token %}
@@ -178,10 +176,12 @@ def game(x):
         </div>
     </div>
     <div class="row">
-        <div id="output" class="col-6 ">
+        <div id="output1" class="col-4 ">
         </div>
-
-
+        <div id="output2" class="col-4 ">
+        </div>
+        <div id="output3" class="col-4 ">
+        </div>
     </div>
 
 </div>
@@ -197,7 +197,7 @@ def game(x):
         input.setAttribute("class", "user rounded")
         input.setAttribute("name", "user")
         input.setAttribute("Placeholder", "Num")
-        input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
+        input.style.cssText = "width:100%;margin-left:1px;margin-top:1px";
         parent.appendChild(input)
     }
 
@@ -268,10 +268,14 @@ def game(x):
                     document.getElementById("loader-1").setAttribute("style","display:none")
                     js_ans = JSON.parse(xmlhttp.response)
                     // console.log(js_ans.kill_status_record)
-                    parent = document.getElementById("output")
+                    parent = document.getElementById("output1")
                     len = parent.childNodes.length
-                    for(i=0;i<len;i++){
+                    for(j=1;j<=3;j++){
+                        parent = document.getElementById("output"+j.toString(10))
+                        len = parent.childNodes.length
+                        for(i=0;i<len;i++){
                         parent.removeChild(parent.childNodes[0]);
+                        }
                     }
 
                     if (js_ans.no_input != undefined){
@@ -291,19 +295,26 @@ def game(x):
                     }
                     // console.log(output_string[0][0])
 
-
                     output_string_now_p = 0
                     print_word_now_p = 0
                     // console.log(output_string)
-
+                    output_column_num = 0
+                    var output_column_num_arr = [0,3,6]
                     function write(output_string_now_p, print_word_now_p){
+                        if (output_column_num_arr.indexOf(output_string_now_p) != -1){
+                            output_column_num_arr.shift()
+                            console.log(output_column_num_arr + "    " + output_column_num.toString(10))
+                            output_column_num += 1
+                            const parent = document.getElementById("output" + output_column_num.toString(10))
+                        }
+                        
                         if(output_string[output_string_now_p] == undefined){
                             console.log("end")
                         }else{
                             if(output_string[output_string_now_p][print_word_now_p] == undefined){
                                 output_string_now_p += 1
                                 print_word_now_p = 0
-                                setTimeout(write.bind(this), 200, output_string_now_p,print_word_now_p)
+                                setTimeout(write.bind(this), 100, output_string_now_p,print_word_now_p)
                             }else{
                                 if(print_word_now_p == 0){
                                     var p = document.createElement('p')
@@ -313,41 +324,25 @@ def game(x):
                                     p.innerHTML += output_string[output_string_now_p][print_word_now_p]
                                     console.log(output_string[output_string_now_p][print_word_now_p])
                                     print_word_now_p += 1
-                                    setTimeout(write.bind(this), 150, output_string_now_p,print_word_now_p)
+                                    setTimeout(write.bind(this), 30, output_string_now_p,print_word_now_p)
                                 }else{
                                     var p = document.getElementById('output'+output_string_now_p.toString(10))
                                     p.innerHTML += output_string[output_string_now_p][print_word_now_p]
                                     print_word_now_p += 1
-                                    // console.log( "2"+output_string[output_string_now_p][print_word_now_p])
-                                    setTimeout(write.bind(this), 150, output_string_now_p,print_word_now_p)
+
+                                    setTimeout(write.bind(this), 30, output_string_now_p,print_word_now_p)
                                 }
                             }
                         }
+
                     }
                     write(output_string_now_p, print_word_now_p)
-
-                    // 先註解 做不出來就用這個版本的
-                    // for(i=1; i<=js_ans.kill_status_record.length; i++){
-                    //     // console.log(typeof(js_ans.kill_status_record[i-1]))
-
-                    //     if(js_ans.kill_status_record[i-1] == true){
-                    //         var p = document.createElement("p")
-                    //         p.innerHTML = "變異" + (i).toString(10) + "kill成功"
-                    //         parent.appendChild(p)
-                            
-                    //     }else{
-                    //         var p = document.createElement("p")
-                    //         p.innerHTML = "變異" + (i).toString(10) + "kill失敗"
-                    //         parent.appendChild(p)
-                    //     }
-                    // }
 
                     var elem1 = document.getElementById("myBar");
                     var elem2 = document.getElementById("myP");
                     var width = 1;
                     var id = setInterval(frame, 52);
                     var elemp2 = document.getElementById('myp2')
-                    // elemp2.innerHTML = "恭喜你的變異程式擊殺率有" + js_ans.killper + "% 查看左側輸出欄可以得知那些程式未被順利kill"
                     function frame() {
                         if (width >= parseFloat(js_ans.killper)) {
                             elem1.style.width = parseFloat(js_ans.killper) + '%';
@@ -359,10 +354,6 @@ def game(x):
                             elem2.innerHTML = width + '%';
                         }
                     }
-
-                    // var p = document.createElement("p")
-                    //         p.innerHTML = "Kill率有" + js_ans.killper + "% 耶 太棒了吧"
-                    //         parent.appendChild(p)
                     
                     
                 }
@@ -389,7 +380,6 @@ def game(x):
     }
 </script>
 <!-- 送資料到後端 ajax -->
-
 
 <!-- BUTTOM 控制 -->
 <script>
@@ -637,14 +627,14 @@ function add_ans(){
     // input.setAttribute("id", "Num")
     input.setAttribute("name", "user")
     input.setAttribute("Placeholder", "Num")
-    input.style.cssText = "width:30%;margin-left:1px;margin-top:1px";
+    input.style.cssText = "width:100%;margin-left:1px;margin-top:1px";
     parent.appendChild(input)
 }
 </script>
 <!-- BUTTOM 控制 -->
 
 <!-- 計時器運行 -->
-<script>
+<!-- <script>
     var id = setInterval(TimeCount, 1000);
     function TimeCount(){
         time = document.getElementById("timecount")
@@ -674,7 +664,7 @@ function add_ans(){
         }
    
     }
-</script>
+</script> -->
 
         <!-- <div class = "col-3" id="timecount">
             {{timecout}}
