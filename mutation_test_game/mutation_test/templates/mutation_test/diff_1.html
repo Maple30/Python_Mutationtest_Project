@@ -171,10 +171,12 @@ def game(x):
         </div>
     </div>
     <div class="row">
-        <div id="output" class="col-6 ">
+        <div id="output1" class="col-2 " >
         </div>
-
-
+        <div id="output2" class="col-2 ">
+        </div>
+        <div id="output3" class="col-2 ">
+        </div>
     </div>
 
 </div>
@@ -259,10 +261,14 @@ def game(x):
                     document.getElementById("loader-1").setAttribute("style","display:none")
                     js_ans = JSON.parse(xmlhttp.response)
                     // console.log(js_ans.kill_status_record)
-                    parent = document.getElementById("output")
+                    let parent = document.getElementById("output1")
                     len = parent.childNodes.length
-                    for(i=0;i<len;i++){
+                    for(j=1;j<=1;j++){
+                        parent = document.getElementById("output"+j.toString(10))
+                        len = parent.childNodes.length
+                        for(i=0;i<len;i++){
                         parent.removeChild(parent.childNodes[0]);
+                        }
                     }
 
                     if (js_ans.no_input != undefined){
@@ -285,37 +291,51 @@ def game(x):
 
                     output_string_now_p = 0
                     print_word_now_p = 0
-                    // console.log(output_string)
-
+                    output_column_num = 0
+                    var output_column_num_arr = [0]
                     function write(output_string_now_p, print_word_now_p){
+                        if (output_column_num_arr.indexOf(output_string_now_p) != -1){
+                            output_column_num_arr.shift()
+                            console.log(output_column_num_arr + "    " + output_column_num.toString(10))
+                            
+                            output_column_num += 1
+                            parent = document.getElementById("output" + output_column_num.toString(10))
+                            console.log(parent)
+                        }
+                        
                         if(output_string[output_string_now_p] == undefined){
                             console.log("end")
                         }else{
                             if(output_string[output_string_now_p][print_word_now_p] == undefined){
                                 output_string_now_p += 1
                                 print_word_now_p = 0
-                                setTimeout(write.bind(this), 200, output_string_now_p,print_word_now_p)
+                                setTimeout(write.bind(this), 100, output_string_now_p,print_word_now_p)
                             }else{
                                 if(print_word_now_p == 0){
                                     var p = document.createElement('p')
-                                    p.setAttribute('id','output'+output_string_now_p.toString(10))
+                                    p.setAttribute('id','out_p_'+output_column_num.toString(10)+output_string_now_p.toString(10))
+                                    if(output_string[output_string_now_p].indexOf("失敗") != -1){
+                                        p.style.cssText = "color: indianred;"
+                                    }
                                     parent.appendChild(p)
-                                    var p = document.getElementById('output'+output_string_now_p.toString(10))
+                                    var p = document.getElementById('out_p_'+output_column_num.toString(10)+output_string_now_p.toString(10))
                                     p.innerHTML += output_string[output_string_now_p][print_word_now_p]
-                                    console.log(output_string[output_string_now_p][print_word_now_p])
+                                    
                                     print_word_now_p += 1
-                                    setTimeout(write.bind(this), 150, output_string_now_p,print_word_now_p)
+                                    setTimeout(write.bind(this), 30, output_string_now_p,print_word_now_p)
                                 }else{
-                                    var p = document.getElementById('output'+output_string_now_p.toString(10))
+                                    var p = document.getElementById('out_p_'+output_column_num.toString(10)+output_string_now_p.toString(10))
                                     p.innerHTML += output_string[output_string_now_p][print_word_now_p]
                                     print_word_now_p += 1
-                                    // console.log( "2"+output_string[output_string_now_p][print_word_now_p])
-                                    setTimeout(write.bind(this), 150, output_string_now_p,print_word_now_p)
+
+                                    setTimeout(write.bind(this), 30, output_string_now_p,print_word_now_p)
                                 }
                             }
                         }
+
                     }
                     write(output_string_now_p, print_word_now_p)
+
 
                     // 先註解 做不出來就用這個版本的
                     // for(i=1; i<=js_ans.kill_status_record.length; i++){

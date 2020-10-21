@@ -12,5 +12,5 @@ def game(x):
     return p
 
 def test_game():
-    assert game(60)==1
+    assert game(-1000)==4
     
