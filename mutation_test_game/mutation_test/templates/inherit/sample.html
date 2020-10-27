@@ -75,6 +75,12 @@
                     <!-- <li class="nav-item active">
                         <a class="nav-link" href="{% url 'tool_download' %}">tool_download</a>
                     </li> -->
+                    <li class="nav-link" type="button" style="color: rgb(0, 0, 0);font-family: Microsoft JhengHei, Helvetica Neue, Helvetica, sans-serif;" data-toggle="modal" data-target="#mutatemodel">
+                        <!-- <button type="button" class="btn btn-primary" >
+                            Launch demo modal
+                          </button> -->
+                          變異測試說明
+                    </li>
                     <li class="nav-link" type="button" style="color: rgb(0, 0, 0);font-family: Microsoft JhengHei, Helvetica Neue, Helvetica, sans-serif;" data-toggle="modal" data-target="#exampleModal">
                         <!-- <button type="button" class="btn btn-primary" >
                             Launch demo modal
@@ -104,22 +110,76 @@
     </body>
     <!-- Button trigger modal -->
 
-  
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">MuPy遊戲說明</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" >
             <pre>
-在這邊向大家說明MuPy系統如何操作
-            </pre>
-          <img src="https://i.imgur.com/hr6FEFL.png" alt="fuck" style="">
+首先在網頁的右上方可以看到此按鈕列，當按下文字為"變異前的"按鈕後
+</pre>
+          <img src="https://i.imgur.com/gamNcZC.png" alt="Nope" style="">
+<pre>
+======================================================
+你可以看到圖(2)的程式碼，這是原始程式碼
+</pre>
+<img src="https://i.imgur.com/l7m6Is9.png" alt="Nope" style="">
+<pre>
+======================================================
+再點擊右側其他Button可以看到變異後的程式碼
+(有些變異測試會一次變更兩個運算子，但本系統一次只會變更一個運算子)
+而玩家的目的就是必須想辦法讓原始程式碼與變異程式碼return不同結果
+</pre>
+<img src="https://i.imgur.com/I4z65kE.png" alt="Nope" style="">
+<pre>
+======================================================
+在網頁右上方的column可以輸入測試資料(一個column僅限單個數字)
+若column不夠使用Add column就能新增column圖(4)，
+按下Test就會執行變異測試
+</pre>
+<img src="https://i.imgur.com/K4WBUGS.png" alt="Nope" style="">
+<pre>
+======================================================
+網頁左下角可以看到執行結果
+</pre>
+<img src="https://i.imgur.com/Tc98I8w.png" alt="Nope" style="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="mutatemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">變異測試說明</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+<pre>將原有的運算子換成其他同類型的運算子(">" => ">=" , ">" =>
+"&lt;="...等等)，基於此原則產生數個變異程式(此處後通稱P')而變更運算
+子後的P'的程式邏輯會變得和以原始的程式邏輯不同，所以兩者在輸入同樣
+的測試資料時獲得的結果也理當會不相同，因此當兩者的結果不同時就會稱
+此P'被殺掉了(Killed)，而結果相同時則稱此P'存活(Survive)
+</pre>
+<img src="https://i.imgur.com/Ixb6SHb.png" alt="Nope" style="">
+<pre>
+
+※測試資料通常不會只有一筆而是多筆的測試資料，而只要有其中一筆測試
+資料能讓原始的程式與變異程式回傳值不同，就能通過變異測試
+</pre>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
