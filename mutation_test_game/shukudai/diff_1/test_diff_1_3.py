@@ -12,6 +12,7 @@ def game(x):
     return p
 
 def test_game():
-    assert game(999)==1
-    assert game(8787)==1
+    assert game(1000000000000000000000000000000000000000000000)==1
+    assert game(1)==0
+    assert game(4536)==1
     

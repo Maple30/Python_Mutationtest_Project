@@ -12,9 +12,9 @@ def game(x):
     return p
 
 def test_game():
-    assert game(8787)==1
-    assert game(10)==3
-    assert game(222)==1
-    assert game(-1999)==4
-    assert game(88)==1
+    assert game(675)==1
+    assert game(1234)==1
+    assert game(876567546)==1
+    assert game(345745675)==1
+    assert game(57654567546)==1
     
