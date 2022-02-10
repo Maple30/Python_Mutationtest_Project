@@ -1,7 +1,7 @@
 import sys
 import subprocess
 from NetGame import game
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai")
 import share
 
 #def 執行測試並回傳結果
@@ -44,7 +44,7 @@ def AssertCode(input):
     mu_filenames =[]
     
     # 產生變異的題目
-    pos = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_3/"
+    pos = "//home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai/diff_3/"
     for i in range(1,10):
         mu_filenames.append("test_diff_3_{num}.py".format(num=i))
         mutated = ""

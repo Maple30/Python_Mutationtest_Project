@@ -32,6 +32,7 @@ def killpercent(beslipt_output=list(), assert_all_fun = []):
         # with open(i[0], 'r', encoding='UTF-8') as file:
     # print(beslipt_output)
     for one in beslipt_output:
+        print(one)
         if "passed" in one[-2] and "failed" in one[-2]: #字串存在"passed"和"failed"
             for p,item in enumerate(one):
                 if "short test summary info" in item:

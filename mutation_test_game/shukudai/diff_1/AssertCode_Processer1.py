@@ -1,7 +1,7 @@
 import sys
 import subprocess
 from NetGame import game
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai")
 import share
 
 #def 執行測試並回傳結果
@@ -12,8 +12,10 @@ def run(mu_filenames):
     for mus in mu_filenames: #執行shell
         cmd = "pytest " + "shukudai/diff_1/" + mus #要有空格==> pytest mus
         #shell set True can run
-        output.append(subprocess.run([cmd], capture_output=True, shell=True).stdout.decode())
-    # print()
+        output.append(subprocess.run([cmd], capture_output=True, shell=True).stdout.decode()
+    )
+    
+    print(output)
     #對output list內的每組字串以\n分割
     beslipt_output = []
     for item in output:
@@ -44,7 +46,7 @@ def AssertCode(input):
     mu_filenames =[]
     
     # 產生變異的題目
-    pos = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_1/"
+    pos = "/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai/diff_1/"
     for i in range(1,4):
         mu_filenames.append("test_diff_1_{num}.py".format(num=i))
         mutated = ""

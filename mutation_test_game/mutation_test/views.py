@@ -1,14 +1,14 @@
 import sys, datetime, time, random
 import traceback
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_tool")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_tool")
 import mutation
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/T35")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai/T35")
 import T35, mutateT35
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_1/")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai/diff_1/")
 import AssertCode_Processer1
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_2/")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai/diff_2/")
 import AssertCode_Processer2
-sys.path.append("/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/shukudai/diff_3/")
+sys.path.append("/home/user777/Python_Mutationtest_Project/mutation_test_game/shukudai/diff_3/")
 import AssertCode_Processer3
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
@@ -122,7 +122,7 @@ def diff_1(request, bangou=0):
 
 
 def diff_1_load(request):
-    basedir = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/"
+    basedir = "/home/user777/Python_Mutationtest_Project/mutation_test_game/"
     all_shukudai = []
     
     for i in range(1,4):
@@ -216,7 +216,7 @@ def diff_2(request,bangou=0):
             return render(request, 'mutation_test/diff_2.html',{"error":"請回到首頁"})
 
 def diff_2_load(request):
-    basedir = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/"
+    basedir = "/home/user777/Python_Mutationtest_Project/mutation_test_game/"
     all_shukudai = []
     
     for i in range(1,7):
@@ -310,7 +310,7 @@ def diff_3(request, bangou=0):
             return render(request, 'mutation_test/diff_3.html',{"error":"請回到首頁"})
 
 def diff_3_load(request):
-    basedir = "/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_test_game/"
+    basedir = "/home/user777/Python_Mutationtest_Project/source_code/mutation_test_game/"
     all_shukudai = []
     
     for i in range(1,10):
@@ -328,7 +328,7 @@ def ajax(request):
 # 小工具下載路徑
 from urllib import parse
 def tool_download(request):
-    Zip = '/mnt/c/Users/st096/Desktop/Python_Test_Project/source_code/mutation_guitool.zip'
+    Zip = '/home/user777/Python_Mutationtest_Project/source_code/mutation_guitool.zip'
     z_file = open(Zip, 'rb')
     data = z_file.read()
     z_file.close()
