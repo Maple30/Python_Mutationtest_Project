@@ -12,5 +12,5 @@ def game(x):
     return p
 
 def test_game():
-    assert game(22)==2
+    assert game(50)==2
     
